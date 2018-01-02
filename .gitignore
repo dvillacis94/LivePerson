@@ -51,3 +51,11 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+
+# iOS ignores
+ios/Podfile.lock
+ios/Pods/
+ios/Podfile
+ios/LivePerson-tvOS/
+ios/LivePerson-tvOSTests/
+ios/LivePersonTests
