@@ -13,7 +13,7 @@
     "react-native": "0.51.0",
     "react-native-event-bridge": "^0.8.0",
     "react-native-event-listeners": "^1.0.3",
-    "react-navigation": "^1.0.0-beta.21"
+    "react-navigation": "^1.0.0-beta.22"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",

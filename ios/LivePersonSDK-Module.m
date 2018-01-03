@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 
+// INFO : This bridge is use when using ViewController Mode to handle Menu Interaction
 @interface RCT_EXTERN_MODULE(LivePersonSDK, NSObject)
   RCT_EXTERN_METHOD(menuButtonPressed)
 @end

@@ -21,17 +21,11 @@ class LivePersonSDK: NSObject {
   // Singleton
   static let shared = LivePersonSDK()
   /// Account Number / BrandId
-  private var account : String?
+  private var account : String = "72740529"
   /// Conversation Query
   private var conversationQuery : ConversationParamProtocol? {
-    // Check if Account Number has been set
-    if self.account != nil {
-      // Return Query
-      return LPMessagingSDK.instance.getConversationBrandQuery(self.account!)
-    } else {
-      // Return Nil
-      return nil
-    }
+    // Return Query
+    return LPMessagingSDK.instance.getConversationBrandQuery(self.account)
   }
   /// LPMessagingSDKDelegate
   public var delegate : LPMessagingSDKdelegate? {
@@ -40,6 +34,10 @@ class LivePersonSDK: NSObject {
   }
   /// Reference to MessagingViewController
   private var conversationViewController : MessagingViewController?
+  /// Check if a conversation is currently active
+  public var isConversationActive : Bool {
+    get { return (self.conversationQuery != nil) ? LPMessagingSDK.instance.checkActiveConversation(self.conversationQuery!) : false }
+  }
   
   // MARK: - Initialization
   
@@ -47,12 +45,7 @@ class LivePersonSDK: NSObject {
   override init() {}
   
   /// Will init Singleton with Account Number
-  ///
-  /// - Parameter brandId: Account Number
-  public func initSDK(account brandId: String) {
-    // Set BrandId/Account Number
-    self.account = brandId
-    //
+  public func initSDK() {
     do {
       // Init LPMessagingSDK
       try LPMessagingSDK.instance.initialize()
@@ -84,11 +77,9 @@ class LivePersonSDK: NSObject {
       // Set ConversationViewController Reference
       self.conversationViewController = viewController as? MessagingViewController
       // Get new ConversationViewParams
-      let conversationViewParams = LPConversationViewParams(conversationQuery: self.conversationQuery!, containerViewController: self.conversationViewController!, isViewOnly: false)
+      let conversationViewParams = LPConversationViewParams(conversationQuery: self.conversationQuery!, containerViewController: viewController, isViewOnly: false)
       // Show Conversation
       LPMessagingSDK.instance.showConversation(conversationViewParams, authenticationParams: nil)
-      // Refresh View
-      viewController.parent?.view.addSubview(viewController.view)
     }
   }
   
@@ -100,8 +91,6 @@ class LivePersonSDK: NSObject {
     if self.conversationQuery != nil {
       // Show Conversation
       LPMessagingSDK.instance.removeConversation(self.conversationQuery!)
-      //
-      // LivePersonSDK.shared.conversationViewController!.removeFromParentViewController()
     }
   }
   
@@ -206,22 +195,117 @@ class LivePersonSDK: NSObject {
     configuration.sendButtonEnabledColor = UIColor.tangerine
     // Set Brand Name
     configuration.brandName = "LivePerson"
-    // Set Navigation Bar Background Color for Secure Form
-    configuration.secureFormNavigationBackgroundColor = UIColor.tangerine
     // Enable Checkmark instead of Text
     configuration.isReadReceiptTextMode = false
     // Set Check Mark Visibility (SentAndAccepted, SentOnly, All)
     configuration.checkmarkVisibility = CheckmarksState.sentAndAccepted
     // Checkmark Read Color
     configuration.checkmarkReadColor = UIColor.tangerine
-    // Set Navigation Bar Background Color for Window Mode On
-    configuration.conversationNavigationBackgroundColor = UIColor.tangerine
     // Set Ability to enable/disable Shift Toaster
     configuration.ttrShowShiftBanner = true
+    
+    // TODO: LPMessagingSDK Version 2.7 introduced new Customization Options
+    
+    // Set Background Color of the Connectivity Status Bar while Connecting
+    // configuration.connectionStatusConnectingBackgroundColor = UIColor.lightGray
+    // Set Text Color of the Connectivity Status Bar while Connecting
+    // configuration.connectionStatusConnectingTextColor = UIColor.white
+    // Set Background Color of the Connectivity Status Bar when Connection Fails
+    // configuration.connectionStatusFailedToConnectBackgroundColor = UIColor.lightGray
+    // Set Text Color of the Connectivity Status Bar when Connection Fails
+    // configuration.connectionStatusFailedToConnectTextColor = UIColor.red
+    
+    // INFO: LPMessagingSDK Version 2.8 introduced new Customization Options
+    
+    // Set Text Mode to false, in order to use an Image, if true it will always use text, even if an image is set
+    // configuration.isSendMessageButtonInTextMode = false
+    // Set Send Button Image
+    // configuration.sendButtonImage = UIImage(named: "IMAGE_NAME")
+    // Set the radius of the scroll to bottom badge corners
+    // configuration.scrollToBottomButtonBadgeCornerRadius = 12
+    // Set the top left and bottom left radius of the scroll to bottom button
+    // configuration.scrollToBottomButtonCornerRadius = 20
+    // Set the corner radius of the unread messages cell
+    // configuration.unreadMessagesCornersRadius = 8
+    
+    // INFO: LPMessagingSDK Version 2.8 introduced new Customization from User Bubbles
+    
+    // Set User Bubble Top Left Corner Radius
+    // configuration.userBubbleTopLeftCornerRadius = 8
+    // Set User Bubble Top Right Corner Radius
+    // configuration.userBubbleTopRightCornerRadius = 8
+    // Set User Bubble Bottom Left Corner Radius
+    // configuration.userBubbleBottomLeftCornerRadius = 8
+    // Set User Bubble Bottom Right Corner Radius
+    // configuration.userBubbleBottomRightCornerRadius = 0
+    
+    // INFO: LPMessagingSDK Version 2.8 introduced new Customization from Agent Bubbles
+    
+    // Set Agent Bubble Top Left Corner Radius
+    // configuration.remoteUserBubbleTopLeftCornerRadius = 8
+    // Set Agent Bubble Top Right Corner Radius
+    // configuration.remoteUserBubbleTopRightCornerRadius = 8
+    // Set Agent Bubble Bottom Left Corner Radius
+    // configuration.remoteUserBubbleBottomLeftCornerRadius = 0
+    // Set Agent Bubble Bottom Right Corner Radius
+    // configuration.remoteUserBubbleBottomRightCornerRadius = 8
+    
+    // INFO: LPMessagingSDK Version 2.9 introduced new Customization Options
+    
+    // Set Custom font for Timestamp
+    // configuration.customFontNameDateSeparator = "FONT_NAME"
+    // Set Date Separator Font Text Style
+    // configuration.dateSeparatorFontSize = UIFontTextStyle.footnote
+    // Set Date Separator Top Spacing
+    // configuration.dateSeparatorTopPadding = 5.0
+    // Set Date Separator Bottom Spacing
+    // configuration.dateSeparatorBottomPadding = 5.0
+    // Set Input TextView Top Border Color - by default is Clear
+    // configuration.inputTextViewTopBorderColor = UIColor.lightGray
+    // Set Conversation Closed Separator Font Size
+    // configuration.conversationSeparatorFontSize = UIFontTextStyle.caption1
+    // Set Font Name for Conversation Closed Separator
+    // configuration.conversationSeparatorFontName = "FONT_NAME"
+    // Set Conversation Closed Separator Top Spacing
+    // configuration.conversationSeparatorTopPadding = 2.0
+    // Set Conversation Closed separator line spacing (From Label to next Conversation Bottom Padding)
+    // configuration.conversationSeparatorBottomPadding = 2.0
+    // Set Conversation Separator Bottom Spacing
+    // configuration.conversationSeparatorViewBottomPadding = 2.0
+    // Set Array of images for creating the custom refresh controller. The controller will loop the images; two or more images are required for the array to take effect.
+    // configuration.customRefreshControllerImagesArray = [UIImage(named:"IMAGE 1"), UIImage(named:"IMAGE 2")]
+    // Set Custom refresh controller speed animation; defines the full images loop time. A smaller value will create a higher speed animation.
+    // configuration.customRefreshControllerAnimationSpeed = 2
+    // Set Bubble Timestamp Top Spacing (from Text Bubble to Timestamp)
+    // configuration.bubbleTimestampTopPadding = 2.0
+    // Set Bubble Timestamp Bottom Spacing (from Timestamp to Next Message Bubble)
+    // configuration.bubbleTimestampBottomPadding = 2.0
+    
+    
+    // INFO: LPMessagingSDK Version 2.9 introduced new Customization from Agent Bubbles
+    
+    // Set Remote User Left Padding (left edge to the avatar)
+    // configuration.remoteUserAvatarLeadingPadding = 2.0
+    // Set Remote User Right Padding (from the avatar to the bubble)
+    // configuration.remoteUserAvatarTrailingPadding = 2.0
+    // Set Remote User Bubble Top Spacing (Inner Padding)
+    // configuration.bubbleTopPadding = 2.0
+    // Set Remote User Bubble Bottom Spacing (Inner Padding)
+    // configuration.bubbleBottomPadding = 2.0
+    // Set Remote User Bubble Bottom Spacing (Inner Padding from Left Bubble Edge to Text)
+    // configuration.bubbleLeadingPadding = 2.0
+    // Set Remote User Bubble Bottom Spacing (Inner Padding from Text to Right Bubble Edge)
+    // configuration.bubbleTrailingPadding = 2.0
+    
+    // INFO: Set Navigation Bar Background Color for Window Mode Only
+    configuration.conversationNavigationBackgroundColor = UIColor.tangerine
+    
     // Costumize Structured Content
     self.customizeStructuredContent(config: configuration)
     // Customize Messaging Survey
     self.customizeSurvey(config: configuration)
+    // Customize Secure Forms
+    self.customizeSecureForms(config: configuration)
     // Print Configurations
     LPConfig.printAllConfigurations()
   }
@@ -230,10 +314,39 @@ class LivePersonSDK: NSObject {
   ///
   /// - Parameter config: LPConfig Instance
   private func customizeStructuredContent(config : LPConfig){
+    // INFO : LPMessagingSDK Version 2.7 introduced the ability to send Structure Content
+    
     // Enable Structure Content
-    config.enableStrucutredContent = true
+    // config.enableStrucutredContent = true
     // Set Structure Content Border Color
-    config.structuredContentBubbleBorderColor = UIColor.black
+    // config.structuredContentBubbleBorderColor = UIColor.black
+    // Set Structure Content Bubble Border Width in Pixels
+    // config.structuredContentBubbleBorderWidth = 1.5
+  }
+  
+  /// Will customize Secure Forms Items
+  ///
+  /// - Parameter config: LPConfig Instance
+  private func customizeSecureForms(config : LPConfig){
+    // Set Navigation Bar Background Color for Secure Form
+    config.secureFormNavigationBackgroundColor = UIColor.tangerine
+    
+    // INFO : LPMessagingSDK Version 2.7 introduced Customize New Elements for Secure Forms
+    
+    // Set font name to be used when the user is completing the secure form. If not set, the default font is Helvetica
+    config.secureFormCustomFontName = "Helvetica"
+    // Hiding the secure form logo at the top of the form
+    config.secureFormHideLogo = false
+    // Set loading indicator color when loading the form before opening.
+    config.secureFormBubbleLoadingIndicatorColor = UIColor.lightGray
+    // Hiding the secure form logo at the top of the form
+    config.secureFormHideLogo = false
+    // Set Navigation Back Button Item (X) Color
+    config.secureFormBackButtonColor = UIColor.white
+    // Set SecureForm "Fill in form" Text Color
+    config.secureFormBubbleFillFormButtonTextColor = UIColor.tangerine
+    // Set SecureForm Image Outline Color
+    config.secureFormBubbleFormImageTintColor = UIColor.tangerine
   }
   
   /// Will customize Survey Screen
@@ -262,7 +375,7 @@ class LivePersonSDK: NSObject {
       // Create Alert Controller for Menu
       let menu = UIAlertController(title: "Menu", message: "Choose an Option", preferredStyle: .actionSheet)
       // Create Resolve Action
-      let resolve = UIAlertAction(title: "Resolve", style: .default) { (alert : UIAlertAction) in
+      let resolve = UIAlertAction(title: "Resolve", style: .destructive) { (alert : UIAlertAction) in
         // Resolve Conversation
         LivePersonSDK.shared.resolveConversation()
       }
@@ -275,6 +388,8 @@ class LivePersonSDK: NSObject {
       }
       // Create Cancel - Will Dismiss AlertSheet
       let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+      // Toggle Resolve State Depending on Conversation State
+      resolve.isEnabled = self.isConversationActive
       // Add Action - Resolve
       menu.addAction(resolve)
       // Add Action - Urgent
@@ -286,7 +401,6 @@ class LivePersonSDK: NSObject {
       // Show Menu
       LivePersonSDK.shared.conversationViewController!.present(menu, animated: true, completion: nil)}
   }
-  
   
   /// Will get Agent Details when available
   ///
@@ -306,10 +420,8 @@ class LivePersonSDK: NSObject {
     agent["nickName"] = nickName ?? ""
     // Add Image URL
     agent["imageURL"] = imageURL ?? ""
-    //
-    let notificatioName = Notification.Name(rawValue:"agent")
-    //
-    NotificationCenter.default.post(name: notificatioName, object: agent)
+    // Dispatch Event with Agent Details
+    EventEmitter.shared.dispatch(name: "AgentDetails", body: agent)
   }
 }
 

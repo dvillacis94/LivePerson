@@ -1,36 +1,71 @@
 // Import React
 import React, {Component} from 'react';
-//
-import { EventRegister } from 'react-native-event-listeners'
 // Import Components
 import {
-  View, Text, StyleSheet, TouchableOpacity, requireNativeComponent, NativeModules,AppState
+  View, Text, StyleSheet, TouchableOpacity, requireNativeComponent, NativeModules, NativeEventEmitter, EmitterSubscription
 } from 'react-native';
 // Import Messaging View from Swift Project
 const MessagingModule = requireNativeComponent('MessagingView', Messaging);
-//
+// LivePerson Native Module - Menu (Back - Menu Buttons)
 const {LivePersonSDK} = NativeModules;
-//
+// EventEmitter Import
+const { ReactNativeEventEmitter } = NativeModules;
+// Create New EventEmitter Instance
+const reactNativeEventEmitter = new NativeEventEmitter(ReactNativeEventEmitter);
+
 /**
- *
+ * Messaging Component for iOS
  **/
 class Messaging extends Component<{}> {
 
+  /**
+   * Agent Emitter Subscription
+   */
+  agentDetailsSubscription : EmitterSubscription;
+
+  /**
+   * App LifeCycle - Component will Mount
+   */
+  componentWillMount() {
+    // Add Agent Details Listener
+    this.agentDetailsSubscription = reactNativeEventEmitter.addListener('AgentDetails', this.agentDetails, this);
+  }
+
+  /**
+   * App LifeCycle - Component did Mount
+   */
   componentDidMount() {
-    this.listener = EventRegister.addEventListener('agent', (data) => {
-      //Log
-      console.log(`Agent :: ${data}`)
-    })
+
   }
 
+  /**
+   * App LifeCycle - Component will Unmount
+   */
   componentWillUnmount() {
-    EventRegister.removeEventListener(this.listener);
+    // Remove Agent Details Listener
+    this.agentDetailsSubscription.remove()
   }
 
-  // Override Navigation Option
+  /**
+   * Callback will contain Agent Details
+   * @param agent(firstName, lastName, nickName, imageURL)
+   * @private
+   */
+  agentDetails (agent){
+    // Check if Agent Details are "", if true leave "Messaging" as Title
+    let title = (agent.firstName === "") ? "Messaging" : agent.firstName;
+    // Change Navigation Bar Name to Agent Name
+    this.props.navigation.setParams({ title: title });
+  }
+
+  /**
+   * Will Override Navigation Options
+   * @param navigation
+   * @returns {{title: string, headerLeft: *, headerStyle: {backgroundColor: string}|styles.navigationBar|{backgroundColor}, headerTintColor: string, headerRight: *}}
+   */
   static navigationOptions = ( { navigation } ) => ({
     // Navigation Bar Title
-    title           : 'Messaging',
+    title           : typeof(navigation.state.params)==='undefined' || typeof(navigation.state.params.title) === 'undefined' ? 'Messaging': navigation.state.params.title,
     // Set Back Button
     headerLeft      : (
       // Create Back Button
@@ -62,14 +97,22 @@ class Messaging extends Component<{}> {
       </TouchableOpacity>),
   });
 
+  /**
+   * Will render View
+   * @returns {*}
+   */
   render() {
-    return (<View style={styles.container}>
-      <MessagingModule style={styles.container}/>
-    </View>);
+    return (
+      <View style={styles.container}>
+        <MessagingModule style={styles.container}/>
+      </View>
+    );
   }
 }
 
-// Styling
+/**
+ * Styling
+ */
 const styles = StyleSheet.create({
   container     : {
     flex            : 1,
@@ -90,5 +133,9 @@ const styles = StyleSheet.create({
     fontWeight : '500',
   }
 });
-// Expose Class
+
+/**
+ * Expose Class
+ * @type {Messaging}
+ */
 module.exports = Messaging;

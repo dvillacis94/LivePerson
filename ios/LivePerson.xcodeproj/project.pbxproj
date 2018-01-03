@@ -42,8 +42,14 @@
 		660CD1221FE858E600D1589A /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CD1211FE858E600D1589A /* MessagingViewController.swift */; };
 		660CD1241FE85A8D00D1589A /* LivePersonSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CD1231FE85A8D00D1589A /* LivePersonSDK.swift */; };
 		660CD1261FE85BD700D1589A /* UIColor+LivePerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CD1251FE85BD700D1589A /* UIColor+LivePerson.swift */; };
+		661F6E441FFC343200D24F2E /* ReactNativeEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F6E431FFC343200D24F2E /* ReactNativeEventEmitter.m */; };
+		661F6E461FFC345000D24F2E /* ReactNativeEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F6E451FFC345000D24F2E /* ReactNativeEventEmitter.swift */; };
+		661F6E6C1FFD51FA00D24F2E /* WindowModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F6E6B1FFD51FA00D24F2E /* WindowModeViewController.swift */; };
+		661F6E931FFD58E500D24F2E /* WindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F6E921FFD58E500D24F2E /* WindowView.swift */; };
+		661F6E961FFD59B500D24F2E /* WindowModeViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F6E951FFD59B500D24F2E /* WindowModeViewManager.swift */; };
+		661F6E981FFD5A0200D24F2E /* WindowModeViewModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F6E971FFD5A0200D24F2E /* WindowModeViewModule.m */; };
 		663393511FE9BCDE0082E1AE /* LivePersonSDK-Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 663393501FE9BCDE0082E1AE /* LivePersonSDK-Module.m */; };
-		663393761FE9CB510082E1AE /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663393751FE9CB510082E1AE /* Events.swift */; };
+		663393761FE9CB510082E1AE /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663393751FE9CB510082E1AE /* EventEmitter.swift */; };
 		663393831FEB29510082E1AE /* libMSREventBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663393841FEB29510082E1AE /* libMSREventBridge.a */; };
 		66FFF1881FFC0BAD00B4B02F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FFF1871FFC0BAD00B4B02F /* Toast.swift */; };
 		76DBDBB174FA7A0C44D7EEC6 /* libPods-LivePerson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91443FB255A10BE074E4F41A /* libPods-LivePerson.a */; };
@@ -376,8 +382,14 @@
 		660CD1211FE858E600D1589A /* MessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
 		660CD1231FE85A8D00D1589A /* LivePersonSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePersonSDK.swift; sourceTree = "<group>"; };
 		660CD1251FE85BD700D1589A /* UIColor+LivePerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+LivePerson.swift"; sourceTree = "<group>"; };
+		661F6E431FFC343200D24F2E /* ReactNativeEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeEventEmitter.m; sourceTree = "<group>"; };
+		661F6E451FFC345000D24F2E /* ReactNativeEventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactNativeEventEmitter.swift; sourceTree = "<group>"; };
+		661F6E6B1FFD51FA00D24F2E /* WindowModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowModeViewController.swift; sourceTree = "<group>"; };
+		661F6E921FFD58E500D24F2E /* WindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowView.swift; sourceTree = "<group>"; };
+		661F6E951FFD59B500D24F2E /* WindowModeViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowModeViewManager.swift; sourceTree = "<group>"; };
+		661F6E971FFD5A0200D24F2E /* WindowModeViewModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowModeViewModule.m; sourceTree = "<group>"; };
 		663393501FE9BCDE0082E1AE /* LivePersonSDK-Module.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LivePersonSDK-Module.m"; sourceTree = "<group>"; };
-		663393751FE9CB510082E1AE /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		663393751FE9CB510082E1AE /* EventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 		663393841FEB29510082E1AE /* libMSREventBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMSREventBridge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		663393A81FEB298C0082E1AE /* MSREventBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MSREventBridge.xcodeproj; path = "../node_modules/react-native-event-bridge/ios/MSREventBridge.xcodeproj"; sourceTree = "<group>"; };
 		66FFF1861FFC0A8800B4B02F /* LivePerson.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LivePerson.entitlements; path = LivePerson/LivePerson.entitlements; sourceTree = "<group>"; };
@@ -533,8 +545,11 @@
 			isa = PBXGroup;
 			children = (
 				66FFF1861FFC0A8800B4B02F /* LivePerson.entitlements */,
-				660CD10F1FE852B800D1589A /* Bridge */,
-				660CD10C1FE8518A00D1589A /* Messaging */,
+				661F6E1E1FFC33D400D24F2E /* EventEmitter */,
+				660CD10F1FE852B800D1589A /* Bridge - ViewController Mode */,
+				661F6E941FFD598000D24F2E /* Bridge - Window Mode */,
+				660CD10C1FE8518A00D1589A /* Messaging - ViewController Mode */,
+				661F6E911FFD588B00D24F2E /* Messaging - Window Mode */,
 				666FA2EF1FE463CB0028BC3B /* Frameworks */,
 				666FA2EE1FE462510028BC3B /* Extras */,
 				666FA2D11FE462380028BC3B /* Delegates */,
@@ -583,23 +598,50 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		660CD10C1FE8518A00D1589A /* Messaging */ = {
+		660CD10C1FE8518A00D1589A /* Messaging - ViewController Mode */ = {
 			isa = PBXGroup;
 			children = (
 				660CD10D1FE851AE00D1589A /* MessagingView.swift */,
 				660CD1211FE858E600D1589A /* MessagingViewController.swift */,
 			);
-			name = Messaging;
+			name = "Messaging - ViewController Mode";
 			sourceTree = "<group>";
 		};
-		660CD10F1FE852B800D1589A /* Bridge */ = {
+		660CD10F1FE852B800D1589A /* Bridge - ViewController Mode */ = {
 			isa = PBXGroup;
 			children = (
 				660CD1111FE852D200D1589A /* MessagingVIewManager.swift */,
 				660CD1131FE8551300D1589A /* MessagingViewModule.m */,
-				663393501FE9BCDE0082E1AE /* LivePersonSDK-Module.m */,
 			);
-			name = Bridge;
+			name = "Bridge - ViewController Mode";
+			sourceTree = "<group>";
+		};
+		661F6E1E1FFC33D400D24F2E /* EventEmitter */ = {
+			isa = PBXGroup;
+			children = (
+				663393751FE9CB510082E1AE /* EventEmitter.swift */,
+				661F6E431FFC343200D24F2E /* ReactNativeEventEmitter.m */,
+				661F6E451FFC345000D24F2E /* ReactNativeEventEmitter.swift */,
+			);
+			name = EventEmitter;
+			sourceTree = "<group>";
+		};
+		661F6E911FFD588B00D24F2E /* Messaging - Window Mode */ = {
+			isa = PBXGroup;
+			children = (
+				661F6E921FFD58E500D24F2E /* WindowView.swift */,
+				661F6E6B1FFD51FA00D24F2E /* WindowModeViewController.swift */,
+			);
+			name = "Messaging - Window Mode";
+			sourceTree = "<group>";
+		};
+		661F6E941FFD598000D24F2E /* Bridge - Window Mode */ = {
+			isa = PBXGroup;
+			children = (
+				661F6E951FFD59B500D24F2E /* WindowModeViewManager.swift */,
+				661F6E971FFD5A0200D24F2E /* WindowModeViewModule.m */,
+			);
+			name = "Bridge - Window Mode";
 			sourceTree = "<group>";
 		};
 		663393A91FEB298C0082E1AE /* Products */ = {
@@ -632,9 +674,9 @@
 			isa = PBXGroup;
 			children = (
 				660CD0C21FE4815300D1589A /* LivePerson-Bridging-Header.h */,
+				663393501FE9BCDE0082E1AE /* LivePersonSDK-Module.m */,
 				660CD1231FE85A8D00D1589A /* LivePersonSDK.swift */,
 				660CD1251FE85BD700D1589A /* UIColor+LivePerson.swift */,
-				663393751FE9CB510082E1AE /* Events.swift */,
 				66FFF1871FFC0BAD00B4B02F /* Toast.swift */,
 			);
 			name = Extras;
@@ -770,6 +812,9 @@
 				666FA2FF1FE4645B0028BC3B /* Embed Frameworks */,
 				666FA3001FE4645B0028BC3B /* Embed PlugIns */,
 				660CD1701FE979FB00D1589A /* copy_react_headers.sh */,
+				661F6E991FFD621000D24F2E /* TODO:FIXME Warning */,
+				661F6E9B1FFD625300D24F2E /* Clean LPMessaging Pods */,
+				661F6E9D1FFD626B00D24F2E /* Clean LPMessaging Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1303,6 +1348,48 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n\ncd Pods/Headers\n\nrm -rf Public/React\nmkdir -p Public/React\ncd Public/React\nfor f in ../../../../../node_modules/react-native/React/**/*.h\ndo\nln -s $f\ndone\nfor f in ../../../../../node_modules/react-native/Libraries/**/*.h\ndo\nln -s $f\ndone\n\n\ncd ../..\nrm -rf Public/Yoga\nmkdir Public/Yoga\ncd Public/Yoga\nfor f in ../../../../../node_modules/react-native/ReactCommon/yoga/yoga/*.h\n                                                                        do\n                                                                        ln -s $f\n                                                                        done";
 		};
+		661F6E991FFD621000D24F2E /* TODO:FIXME Warning */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "TODO:FIXME Warning";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "KEYWORDS=\"TODO|FIXME|INFO|\\?\\?\\?:|\\!\\!\\!:\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | \\\nxargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | \\\nperl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"";
+		};
+		661F6E9B1FFD625300D24F2E /* Clean LPMessaging Pods */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clean LPMessaging Pods";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${SRCROOT}/Pods/LPMessagingSDK/LPMessagingSDK/LPInfra.framework/frameworks-strip.sh\"\n";
+		};
+		661F6E9D1FFD626B00D24F2E /* Clean LPMessaging Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clean LPMessaging Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/LPInfra.framework/frameworks-strip.sh\"\n";
+		};
 		E73AD1A5CF6614B02F4EAED4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1338,14 +1425,20 @@
 			files = (
 				660CD1121FE852D200D1589A /* MessagingVIewManager.swift in Sources */,
 				660CD0C41FE4815300D1589A /* AppDelegate.swift in Sources */,
+				661F6E461FFC345000D24F2E /* ReactNativeEventEmitter.swift in Sources */,
 				660CD1261FE85BD700D1589A /* UIColor+LivePerson.swift in Sources */,
 				660CD10E1FE851AE00D1589A /* MessagingView.swift in Sources */,
 				660CD1221FE858E600D1589A /* MessagingViewController.swift in Sources */,
 				663393511FE9BCDE0082E1AE /* LivePersonSDK-Module.m in Sources */,
-				663393761FE9CB510082E1AE /* Events.swift in Sources */,
+				663393761FE9CB510082E1AE /* EventEmitter.swift in Sources */,
+				661F6E931FFD58E500D24F2E /* WindowView.swift in Sources */,
 				66FFF1881FFC0BAD00B4B02F /* Toast.swift in Sources */,
+				661F6E961FFD59B500D24F2E /* WindowModeViewManager.swift in Sources */,
+				661F6E6C1FFD51FA00D24F2E /* WindowModeViewController.swift in Sources */,
+				661F6E441FFC343200D24F2E /* ReactNativeEventEmitter.m in Sources */,
 				660CD1141FE8551300D1589A /* MessagingViewModule.m in Sources */,
 				660CD1241FE85A8D00D1589A /* LivePersonSDK.swift in Sources */,
+				661F6E981FFD5A0200D24F2E /* WindowModeViewModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

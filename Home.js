@@ -7,26 +7,32 @@
 import React, {Component} from 'react';
 // Import Components
 import {
-  Platform, StyleSheet, TouchableOpacity, View, Text, Image, Dimensions,PixelRatio
+  Platform, StyleSheet, TouchableOpacity, View, Text, Image, Dimensions, PixelRatio
 } from 'react-native';
 
+/**
+ * Main Screen Component
+ **/
 class Home extends Component<{}> {
 
-  // Set Navigation Options
-  static navigationOptions = {
+  /**
+   * Will Override Navigation Options
+   * @type {{title: string}}
+   */
+  static navigationOptions = ( { navigation } ) => ({
     // Navigation Title
-    title : '',
-    // Hide Navigation Bar
-    // header : Platform.select({
-    //   ios : null
-    // }),
-  };
+    title : 'Home'
+  });
 
    _handleMessagingNavigation( navigate ) {
-    //
+    // Move to Messaging Screen
     navigate('Messaging');
   }
 
+  /**
+   * Will render View
+   * @returns {*}
+   */
   render() {
     // Get Navigation Bar from Props
     const { navigate } = this.props.navigation;
@@ -51,7 +57,9 @@ class Home extends Component<{}> {
   }
 }
 
-// Styling
+/**
+ * Styling
+ */
 const styles = StyleSheet.create({
   container      : {
     flex            : 1,
@@ -97,5 +105,9 @@ const styles = StyleSheet.create({
     color : '#FFFFFF'
   }
 });
-// Expose Class
+
+/**
+ * Expose Class
+ * @type {Messaging}
+ */
 module.exports = Home;

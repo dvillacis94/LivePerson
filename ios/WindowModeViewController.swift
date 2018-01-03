@@ -1,27 +1,17 @@
 //
-//  MessagingViewController.swift
+//  WindowModeViewController.swift
 //  LivePerson
 //
-//  Created by David Villacis on 12/18/17.
-//  Copyright © 2017 Facebook. All rights reserved.
+//  Created by David Villacis on 1/3/18.
+//  Copyright © 2018 Facebook. All rights reserved.
 //
-
 import UIKit
 // Required LP Imports
 import LPMessagingSDK
 import LPAMS
 import LPInfra
 
-
-class MessagingViewController: UIViewController {
-  
-  // MARK: - Properties
-  
-  // Flag to know is CSAT was showing
-  private var wasCSATShowing : Bool = false
-  
-  // Flag to know if SDK is trying to Reconnect
-  private var isTryingToReconnect : Bool = false
+class WindowModeViewController: UIViewController {
   
   // MARK: - App LifeCycle
   
@@ -42,11 +32,11 @@ class MessagingViewController: UIViewController {
   /// Override LoadView
   override func loadView() {
     // Get Frame from Screen
-    let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-110)
+    let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     // Create new with Frame
     let view = UIView(frame: frame)
     // Set Background color
-    view.backgroundColor = UIColor.lightGray
+    view.backgroundColor = UIColor.lightGray.lighter(by: 20.0)
     // Set View
     self.view = view
   }
@@ -71,25 +61,6 @@ class MessagingViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  /// App LifeCycle - View will Disappear
-  override func viewWillDisappear(_ animated: Bool) {
-    // INFO: When using Custom View Controller Mode, Conversation must be remove when leaving the App, if the Conversation View is the current screen
-    // Super Init
-    super.viewWillDisappear(animated)
-    // Remove Conversation
-    LivePersonSDK.shared.removeConversation()
-  }
-  
-  /// App LifeCycle - View did Appear
-  ///
-  /// - Parameter animated: Bool
-  override func viewDidAppear(_ animated: Bool) {
-    // Super Init
-    super.viewDidAppear(animated)
-    // Will make ConversationController layout properly with NavigationBar
-    self.edgesForExtendedLayout = []
-  }
-  
   /// App LifeCycle - View will Appear
   ///
   /// - Parameter animated: Bool
@@ -101,20 +72,21 @@ class MessagingViewController: UIViewController {
     //
     // NOTE: Calling showConversation when the conversation is already showing does nothing
     // Show Messaging Screen
-    self.showConversation()
+    LivePersonSDK.shared.showConversation()
     // Super Init
     super.viewWillAppear(animated)
   }
   
-  // MARK: - LPMessagingSDK Methods
-  
-  /// Will Show LPMessagingSDK Conversation
-  private func showConversation() {
-    // Show Conversation View
-    LivePersonSDK.shared.showConversation(withView: self)
+  /// App LifeCycle - View will Disappear
+  override func viewWillDisappear(_ animated: Bool) {
+    // INFO: When using Custom View Controller Mode, Conversation must be remove when leaving the App, if the Conversation View is the current screen
+    // Super Init
+    super.viewWillDisappear(animated)
+    // Remove Conversation
+    LivePersonSDK.shared.removeConversation()
   }
 }
-extension MessagingViewController : LPMessagingSDKdelegate {
+extension WindowModeViewController : LPMessagingSDKdelegate {
   
   //MARK:- Required - LPMessagingSDKDelegate
   
@@ -161,10 +133,7 @@ extension MessagingViewController : LPMessagingSDKdelegate {
    You can use this data to show the agent details on your navigation bar (in view controller mode)
    */
   func LPMessagingSDKAgentDetails(_ agent: LPUser?) {
-    if(agent != nil) {
-      // Trigger Event when Agent Details Change
-      LivePersonSDK.shared.didAgentDetailsChanged(agent!.firstName, lastName: agent!.lastName, nickName: agent!.nickName, imageURL: agent!.profileImageURL)
-    }
+    
   }
   
   /**
@@ -204,7 +173,13 @@ extension MessagingViewController : LPMessagingSDKdelegate {
    It is called when the conversation view controller removed from its container view controller or window.
    */
   func LPMessagingSDKConversationViewControllerDidDismiss() {
-    
+    // INFO : Event needs to be dispatch when using Window Mode, React-Navite will handle Removing ParentViewController
+    // Agent Dictionary
+    var info : [String : String] = [:]
+    // Add Conversation State
+    info["state"] = "dismiss"
+    // Dispatch Event
+    EventEmitter.shared.dispatch(name: "ConversationClosed", body: info)
   }
   
   /**
@@ -221,8 +196,7 @@ extension MessagingViewController : LPMessagingSDKdelegate {
    It is called when a conversation has ended, from the agent or from the consumer side.
    */
   func LPMessagingSDKConversationEnded(_ conversationID: String?) {
-    // Trigger Event when Agent Details Change - Send Empty Agent to Reset Navigation Title
-    LivePersonSDK.shared.didAgentDetailsChanged("", lastName: "", nickName: "", imageURL: "")
+    
   }
   
   /**
@@ -257,16 +231,7 @@ extension MessagingViewController : LPMessagingSDKdelegate {
    Ready means that all conversations and messages were synced with the server.
    */
   func LPMessagingSDKConnectionStateChanged(_ isReady: Bool, brandID: String) {
-    // INFO: When presenting ConversationView after showing CSAT, the SDK needs to Reconnect, we do this manually in React-Native
-    if !isReady && self.wasCSATShowing && !self.isTryingToReconnect {
-      // Reconnect
-      LivePersonSDK.shared.reconnect()
-      // Change Reconnection Flag
-      self.isTryingToReconnect = true
-    } else if isReady && self.isTryingToReconnect {
-      // Change Reconnection Flag
-      self.isTryingToReconnect = false
-    }
+  
   }
   
   /**
@@ -282,8 +247,7 @@ extension MessagingViewController : LPMessagingSDKdelegate {
    It is called when the Conversation CSAT did load
    */
   func LPMessagingSDKConversationCSATDidLoad(_ conversationID: String?) {
-    // Change CSAT Flag
-    self.wasCSATShowing = true
+    
   }
   
   /**
