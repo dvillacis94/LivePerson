@@ -9,8 +9,7 @@ import {
   NativeEventEmitter,
   EmitterSubscription,
   PixelRatio,
-  Platform,
-  Text
+  Platform
 } from 'react-native';
 // Import Messaging View (Window Mode) from Swift Project
 const MessagingModule = requireNativeComponent('WindowModeView');
