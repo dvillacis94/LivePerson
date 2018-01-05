@@ -1,11 +1,17 @@
-import {AppRegistry, Platform} from 'react-native';
+/**
+ * LivePerson
+ *
+ * Created by David Villacis on 12/15/17.
+ */
+
+import { AppRegistry, Platform } from 'react-native';
 // Import NavigationBar
-import {StackNavigator} from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 // Home Screen Component
 import Home from './Home';
 // TODO : Window Mode Flag, if true, it will instantiate a Component that will Init LPMessagingSDK in WindowMode, else it will instantiate Component in ViewController Mode
 let WINDOW_MODE = true;
-//
+// Will Select React Component depending with type of View
 let ios = (WINDOW_MODE) ? require('./messaging/messaging.window.ios') : require('./messaging/messaging.ios');
 // Import Messaging Component
 const messaging = Platform.select({

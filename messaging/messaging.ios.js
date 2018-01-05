@@ -1,3 +1,9 @@
+/**
+ * LivePerson
+ *
+ * Created by David Villacis on 12/15/17.
+ */
+
 // Import React
 import React, {Component} from 'react';
 // Import Components
