@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 // Messaging Module for Android (this handles LPMessagingSDK)
 import MessagingModule from './messaging/messaging.android.module'
-
+// TODO : Fragment Mode Flag, if true, will select Fragment Method
+let FRAGMENT_MODE = true;
 /**
  * Main Screen Component
  **/
@@ -44,8 +45,13 @@ class Home extends Component<{}> {
    * @private
    */
   _handleAndroidMessagingNavigation() {
-    // Move to Messaging Screen
-    MessagingModule.show();
+    if (FRAGMENT_MODE){
+      // Init Fragment
+      MessagingModule.showFragment();
+    } else {
+      // Move to Messaging Screen
+      MessagingModule.showActivity();
+    }
   }
 
   /**

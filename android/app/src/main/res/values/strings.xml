@@ -1,3 +1,17 @@
 <resources>
   <string name="app_name">LivePerson</string>
+  <!-- Start - Message Status Legends -->
+  <string-array name="message_receive_text">
+    <item>"Sent"</item>
+    <item>"Delivered"</item>
+    <item>"Read"</item>
+    <item>"Not delivered"</item>
+    <item>"Sending"</item>
+  </string-array>
+  <!-- End - Message Status Legends -->
+  <!-- Start - Fragment Menu Items -->
+  <string name="urgent_menu_item">Mark as urgent</string>
+  <string name="resolved_menu_item">Mark as resolved</string>
+  <string name="clear_menu_item">Clear history</string>
+  <!-- End - Fragment Menu Items -->
 </resources>

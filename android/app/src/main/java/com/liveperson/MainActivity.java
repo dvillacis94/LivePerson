@@ -1,8 +1,15 @@
 package com.liveperson;
-
+/**
+ * LivePerson
+ *
+ * Created by David Villacis on 1/3/18.
+ */
 import android.content.IntentFilter;
+// Required React-Native Import
 import com.facebook.react.ReactActivity;
+// Required Firebase Import
 import com.liveperson.firebase.LPFirebaseMessagingService;
+// Required Local Notification Import
 import com.liveperson.helpers.LocalNotificationReceiver;
 
 public class MainActivity extends ReactActivity {

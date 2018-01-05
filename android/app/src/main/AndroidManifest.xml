@@ -62,6 +62,12 @@
     </activity>
     <!-- End - Messaging Activity -->
 
+    <!-- Start - Fragment Container Activity -->
+    <activity
+      android:name=".messaging.FragmentContainerActivity"
+      android:windowSoftInputMode="stateHidden|adjustResize" />
+    <!-- End - Fragment Container Activity -->
+
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
     <!-- Start - firebase Job Dispatcher -->
     <service
