@@ -3,10 +3,11 @@
 buildscript {
     repositories {
         jcenter()
+        google() // Need to avoid error when running 'react-native run-android'
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.google.gms:google-services:3.1.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -16,9 +17,13 @@ allprojects {
     repositories {
         mavenLocal()
         jcenter()
-        maven {
-            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url "$rootDir/../node_modules/react-native/android"
-        }
+        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        maven { url "$rootDir/../node_modules/react-native/android" }
+        // Google's Maven repository
+        maven { url "https://maven.google.com" }
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

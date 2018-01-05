@@ -1,15 +1,52 @@
 package com.liveperson;
 
+import android.content.IntentFilter;
 import com.facebook.react.ReactActivity;
+import com.liveperson.firebase.LPFirebaseMessagingService;
+import com.liveperson.helpers.LocalNotificationReceiver;
 
 public class MainActivity extends ReactActivity {
 
-    /**
-     * Returns the name of the main component registered from JavaScript.
-     * This is used to schedule rendering of the component.
-     */
-    @Override
-    protected String getMainComponentName() {
-        return "LivePerson";
-    }
+  // Saves App State
+  public static boolean foreground;
+
+  /**
+   * Returns the name of the main component registered from JavaScript.
+   * This is used to schedule rendering of the component.
+   */
+  @Override
+  protected String getMainComponentName() {
+    return "LivePerson";
+  }
+
+  // Intent For Local Notification Message
+  IntentFilter localNotificationMessageFilter = new IntentFilter(LPFirebaseMessagingService.LOCAL_NOTIFICATION_ACTION);
+  // Create Local Notification Receiver
+  LocalNotificationReceiver notificationReceiver = new LocalNotificationReceiver();
+
+  /**
+   * App LifeCycle - Will Resume
+   */
+  @Override
+  protected void onResume() {
+    // Init Super Class
+    super.onResume();
+    // Set Foreground Flag - Needed to Show Toast Notification, instead of Push
+    foreground = true;
+    // Register New Receiver for Local Notification
+    registerReceiver(notificationReceiver, localNotificationMessageFilter);
+  }
+
+  /**
+   * App LifeCycle - Will Pause
+   */
+  @Override
+  protected void onPause() {
+    // Set Foreground Flag - Needed to Push Notification, instead of Toast
+    foreground = false;
+    // Unregister Receiver - Notification
+    unregisterReceiver(notificationReceiver);
+    // Init Super Class
+    super.onPause();
+  }
 }

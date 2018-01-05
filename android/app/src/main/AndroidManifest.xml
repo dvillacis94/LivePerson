@@ -1,32 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.liveperson"
-    android:versionCode="1"
-    android:versionName="1.0">
+          package="com.liveperson"
+          android:versionCode="1"
+          android:versionName="1.0">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+  <!-- Internet Access Permission -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <!-- Network State Permission -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <!-- Device Vibration Permission -->
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <!-- Read External Storage Permission -->
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <!-- Write to External Storage Permission -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <!-- [START gcm_permission] -->
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <!-- [END gcm_permission] -->
+  <!-- CoApp Permissions -->
+  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+  <!-- Camera Permission -->
+  <uses-permission android:name="android.permission.CAMERA"/>
 
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
+  <uses-feature android:name="android.hardware.camera"/>
+  <uses-feature android:name="android.hardware.camera.autofocus"/>
 
-    <application
-      android:name=".MainApplication"
-      android:allowBackup="true"
+  <application
+    android:name=".MainApplication"
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+    <!-- Set custom default icon. This is used when no icon is set for incoming notification messages. -->
+    <meta-data
+      android:name="com.google.firebase.messaging.default_notification_icon"
+      android:resource="@drawable/ic_stat_notification"/>
+    <!--
+         Set color used with incoming notification messages. This is used when no color is set for the incoming
+         notification message.
+        -->
+    <meta-data
+      android:name="com.google.firebase.messaging.default_notification_color"
+      android:resource="@color/tangerine"/>
+
+    <!-- Start - Main Activity -->
+    <activity
+      android:name=".MainActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
       android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
-      android:theme="@style/AppTheme">
-      <activity
-        android:name=".MainActivity"
-        android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-        android:windowSoftInputMode="adjustResize">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-      </activity>
-      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-    </application>
+      android:windowSoftInputMode="adjustResize">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <!-- End - Messaging Activity -->
+
+    <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
+    <!-- Start - firebase Job Dispatcher -->
+    <service
+      android:name=".helpers.LivePersonJobService"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+      </intent-filter>
+    </service>
+    <!-- End - firebase Job Dispatcher -->
+    <!-- Start - Firebase Service - This service is used to receive any incoming message -->
+    <service android:name=".firebase.LPFirebaseMessagingService">
+      <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+      </intent-filter>
+    </service>
+    <!-- End Firebase Service -->
+    <!-- Start Firebase Service - This service is used to receive and register the token when it is refreshed -->
+    <service android:name=".firebase.FirebaseInstanceIDService">
+      <intent-filter>
+        <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+      </intent-filter>
+    </service>
+    <!-- End Firebase Service -->
+    <!-- Start Intent Service - Fire Intent on Push Notification -->
+    <service
+      android:name=".firebase.FirebaseRegistrationIntentService"
+      android:exported="false">
+    </service>
+    <!-- End Intent Service -->
+    <!-- Start Broadcast Receiver - Listen to System Broadcast -->
+    <receiver android:name=".helpers.NotificationUI$BadgeBroadcastReceiver">
+      <intent-filter>
+        <action android:name="ACTION_LP_UPDATE_NUM_UNREAD_MESSAGES_ACTION"/>
+      </intent-filter>
+    </receiver>
+    <!-- End Broadcast Receiver -->
+    <activity android:name=".messaging.MessagingActivity">
+    </activity>
+  </application>
 
 </manifest>

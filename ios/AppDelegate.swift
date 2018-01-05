@@ -37,6 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
     self.window?.makeKeyAndVisible()
     // Register Push Notification
     self.registerforPushNotification(application)
+    // Will remove Badge Number when Application is Open
+    if application.applicationState == .background || application.applicationState == .inactive {
+      // Reset Badge
+      UIApplication.shared.applicationIconBadgeNumber = -1
+    }
     // Return
     return true
   }
@@ -65,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
       // Register for Notifications
       application.registerForRemoteNotifications()
     }
-
   }
   
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -83,11 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
   }
   
   func applicationDidBecomeActive(_ application: UIApplication) {
-    // Will only Push to Messaging Screen if App is on the Background or Inactive
-    if UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive {
-      // Reset Badge
-      UIApplication.shared.applicationIconBadgeNumber = -1
-    }
+    
   }
   
   // MARK: - LPMessagingSDKNotificationDelegate Delegate
@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
   /// - Parameter notification: LP Notification ( text, user: Agent(firstName, lastName, nickName, profileImageURL, phoneNumber, employeeID, uid), accountID , isRemote: Bool)
   /// - Returns: true for showing / false for hidding In-App Push Notification
   func LPMessagingSDKNotification(shouldShowPushNotification notification: LPNotification) -> Bool {
-    // Return false if you don't want to show Push Notification
+    // Return false if you don't want to show In-App Push Notification
     return true
   }
   
