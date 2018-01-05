@@ -59,3 +59,5 @@ ios/Podfile
 ios/LivePerson-tvOS/
 ios/LivePerson-tvOSTests/
 ios/LivePersonTests
+# Ignore Certificates
+Certificates/
