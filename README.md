@@ -93,6 +93,8 @@ LPMessagingSDK integration with React-Native
 
 4. Clean & Build the App
 
+> NOTE: if during Building the Project Xcode complains with any errors, Clean the Build Folder using `Shift + alt + cmd + k`, then Build Again `cmd + b`
+
 ## Android Studio ##
 
-In the Case if Android using the following [Guide](https://developers.liveperson.com/android-implementation-guide.html), as adding the SDK to Android follow the same process.
+In the Case if Android use the following [Guide](https://developers.liveperson.com/android-implementation-guide.html), as adding the SDK to Android follow the same process.
