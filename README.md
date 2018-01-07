@@ -53,22 +53,34 @@ LPMessagingSDK integration with React-Native
         source 'https://github.com/CocoaPods/Specs.git'
         source 'https://github.com/LivePersonInc/iOSPodSpecs.git'
         
-        target '<YourApplicatioName>' do
-          # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-          # use_frameworks!
-          
-          # Pods for <YourApplicatioName>
-          pod ‘LPMessagingSDK','~>2.9.0'
-          
-          target '<YourApplicatioName>Tests' do
-            inherit! :search_paths
-            # Pods for testing
-          end
-          
-          target '<YourApplicatioName>UITests' do
-            inherit! :search_paths
-            # Pods for testing
-          end
+        target 'LivePerson' do
+            # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+            # use_frameworks!
+
+            # Pods for LivePerson
+            pod 'LPMessagingSDK'
+            # Your 'node_modules' directory is probably in the root of your project,
+            # but if not, adjust the `:path` accordingly
+            pod 'React', :path => '../node_modules/react-native', :subspecs => [
+                'Core',
+                'CxxBridge', # Include this for RN >= 0.47
+                'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+                'RCTText',
+                'RCTNetwork',
+                'RCTWebSocket', # needed for debugging
+                # Add any other subspecs you want to use in your project
+            ]
+            # Add Event Emitter Module
+            pod 'MSREventBridge', :path => '../node_modules/react-native-event-bridge/MSREventBridge.podspec'
+            
+            # Explicitly include Yoga if you are using RN >= 0.42.0
+            pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+                  
+            # Third party deps podspec link
+            pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+            pod 'GLog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
+            pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+            
         end
     ```
     
