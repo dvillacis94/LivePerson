@@ -110,3 +110,5 @@ LPMessagingSDK integration with React-Native
 ## Android Studio ##
 
 In the Case if Android use the following [Guide](https://developers.liveperson.com/android-implementation-guide.html), as adding the SDK to Android follow the same process.
+
+> IMPORTANT: The Guide is only valid for ADDING the LPMessagingSDK Module, implementing the SDK is done in the SampleApp found inside the Android Folder, as the implementation is different for React-Native
