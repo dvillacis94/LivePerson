@@ -41,10 +41,10 @@ LPMessagingSDK integration with React-Native
         target ‘<YourApplicatioName>’ do
     
      		# Pods for <YourApplicatioName>
-      		pod ‘LPMessagingSDK','~>2.8.0.9'
+      		pod ‘LPMessagingSDK','~>2.9.0'
   	```
   	
-3. Your Podfile should look like this:
+3. Then add the necessary Pods for React-Native
 
     ```ruby
         # Uncomment the next line to define a global platform for your project
@@ -58,7 +58,7 @@ LPMessagingSDK integration with React-Native
             # use_frameworks!
 
             # Pods for LivePerson
-            pod 'LPMessagingSDK'
+            pod ‘LPMessagingSDK','~>2.9.0'
             # Your 'node_modules' directory is probably in the root of your project,
             # but if not, adjust the `:path` accordingly
             pod 'React', :path => '../node_modules/react-native', :subspecs => [
