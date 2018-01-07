@@ -60,4 +60,4 @@ ios/LivePerson-tvOS/
 ios/LivePerson-tvOSTests/
 ios/LivePersonTests
 # Ignore Certificates
-# Certificates/
+Certificates/
