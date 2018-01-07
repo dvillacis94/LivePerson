@@ -21,7 +21,10 @@ class LivePersonSDK: NSObject {
   // Singleton
   static let shared = LivePersonSDK()
   /// Account Number / BrandId
-  private var account : String = "72740529"
+  // private let account : String = "72740529"
+  private let account : String = "12054546"
+  //
+  private let jwt : String = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vZm9vLmNvbSIsInN1YiI6IkxvZ2luUGFnZTdEODE0RERGIiwibmJmIjoxNTE1MDE2NDQ4LCJpYXQiOjE1MTUwMTY0NDgsImV4cCI6MTU0NjU1MjQ0OCwianRpIjoiaWQxMjM0NTYiLCJhdWQiOiJodHRwOi8vZm9vLmNvbS9lbXBsb3llZSJ9.1-oYm2TbNIuATro-ImHEOPmfIKrH-_4h0vCfsQNA9a8M1lyGphxb8UGU76WR0dVM5Jp2mEV7ivP6XnzAIQYJdOBwccaJG9WE4SFO9mQdgBe5vih9t2EDeQShHav_HojhCekPhR5D33wvatJRLHPtQv-sCJi2XhqQTS3aIVGC70g"
   /// Conversation Query
   private var conversationQuery : ConversationParamProtocol? {
     // Return Query
@@ -65,8 +68,10 @@ class LivePersonSDK: NSObject {
     if self.conversationQuery != nil {
       // Get new ConversationViewParams
       let conversationViewParams = LPConversationViewParams(conversationQuery: self.conversationQuery!, containerViewController: nil, isViewOnly: false)
+      //
+      let authenticationParams = LPAuthenticationParams(jwt: self.jwt)
       // Show Conversation
-      LPMessagingSDK.instance.showConversation(conversationViewParams, authenticationParams: nil)
+      LPMessagingSDK.instance.showConversation(conversationViewParams, authenticationParams: authenticationParams)
     }
   }
   
@@ -78,8 +83,10 @@ class LivePersonSDK: NSObject {
       self.conversationViewController = viewController as? MessagingViewController
       // Get new ConversationViewParams
       let conversationViewParams = LPConversationViewParams(conversationQuery: self.conversationQuery!, containerViewController: viewController, isViewOnly: false)
+      //
+      let authenticationParams = LPAuthenticationParams(jwt: self.jwt)
       // Show Conversation
-      LPMessagingSDK.instance.showConversation(conversationViewParams, authenticationParams: nil)
+      LPMessagingSDK.instance.showConversation(conversationViewParams, authenticationParams: authenticationParams)
     }
   }
   

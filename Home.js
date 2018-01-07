@@ -12,8 +12,9 @@ import {
 } from 'react-native';
 // Messaging Module for Android (this handles LPMessagingSDK)
 import MessagingModule from './messaging/messaging.android.module'
-// TODO : Fragment Mode Flag, if true, will select Fragment Method
-let FRAGMENT_MODE = true;
+// TODO : Android Fragment Mode Flag, if true, will select Fragment Method, esle will use and Activity
+// TODO : In the case of 2 Components are use for each case, this is handle in the index.js
+let FRAGMENT_MODE = false;
 /**
  * Main Screen Component
  **/
