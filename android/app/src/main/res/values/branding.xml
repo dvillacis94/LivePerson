@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- General Customization -->
+  <color name="conversation_background">#ffffff</color>
+  <!-- All Bubbles -->
+  <color name="bubble_selected_background_color">#5597a7e3</color>
+  <!-- Brand Bubble-->
+  <dimen name="brand_bubble_stroke_width">0dp</dimen>
+  <color name="brand_bubble_stroke_color">@color/white</color>
+  <color name="brand_bubble_message_text_color">@android:color/white</color>
+  <color name="brand_bubble_message_link_text_color">@color/lp_blue</color>
+  <color name="brand_bubble_timestamp_text_color">@color/lp_dark_gray_1</color>
+  <color name="brand_bubble_background_color">@color/tangerine</color>
+  <color name="brand_logo_background_color">@color/white</color>
+  <color name="brand_logo_icon_color">@android:color/white</color>
+  <!-- Agent Bubble-->
+  <dimen name="agent_bubble_stroke_width">0dp</dimen>
+  <color name="agent_bubble_stroke_color">@color/tangerine</color>
+  <color name="agent_bubble_message_text_color">@android:color/white</color>
+  <color name="agent_bubble_message_link_text_color">@android:color/darker_gray</color>
+  <!--<color name="agent_bubble_timestamp_text_color">@color/disabled_tangerine</color>-->
+  <color name="agent_bubble_background_color">@color/tangerine</color>
+  <color name="agent_avatar_background_color">@color/white</color>
+  <color name="agent_avatar_icon_color">@android:color/white</color>
+  <!-- Consumer Bubble-->
+  <dimen name="consumer_bubble_stroke_width">1dp</dimen>
+  <color name="consumer_bubble_stroke_color">@color/lp_light_gray_1</color>
+  <color name="consumer_bubble_message_text_color">@android:color/black</color>
+  <color name="consumer_bubble_message_link_text_color">@color/lp_blue</color>
+  <color name="consumer_bubble_timestamp_text_color">@color/lp_dark_gray_1</color>
+  <color name="consumer_bubble_background_color">@color/lp_light_gray_1</color>
+  <color name="consumer_bubble_state_text_color">@color/lp_dark_gray_1</color>
+  <!-- System Bubble-->
+  <color name="system_bubble_text_color">@color/lp_dark_gray_1</color>
+  <!-- Consumer Bubble - Link Preview -->
+  <color name="consumer_bubble_link_preview_background_color">@android:color/white</color>
+  <color name="consumer_bubble_link_preview_title_text_color">@android:color/black</color>
+  <color name="consumer_bubble_link_preview_description_text_color">@color/lp_dark_gray_2</color>
+  <!-- Agent Bubble - Link Preview -->
+  <color name="agent_bubble_link_preview_background_color">@android:color/white</color>
+  <color name="agent_bubble_link_preview_title_text_color">@android:color/black</color>
+  <color name="agent_bubble_link_preview_description_text_color">@color/lp_dark_gray_2</color>
+  <!-- Unread Messages Bubble-->
+  <color name="unread_indicator_bubble_text_color">@color/lp_blue</color>
+  <color name="unread_indicator_bubble_background_color">@color/lp_light_gray_1</color>
+  <bool name="unread_indicator_bubble_enable">true</bool>
+  <!--Edit Text-->
+  <color name="edit_text_underline_color">#90CAF9</color>
+  <color name="lp_enter_msg_text">@android:color/black</color>
+  <color name="lp_enter_msg_hint">@android:color/darker_gray</color>
+  <color name="lp_send_button_text_enable">@color/tangerine</color>
+  <color name="lp_send_button_text_disable">#b7b8b9</color>
+  <!-- Survey Fragment -->
+  <color name="feedback_fragment_star">@color/tangerine</color>
+  <color name="feedback_fragment_yesno_btn_selected_background">@color/light_tangerine</color>
+  <color name="feedback_fragment_submit_btn_enabled">@color/tangerine</color>
+  <color name="feedback_fragment_submit_btn_stroke_enabled">@color/tangerine</color>
+  <bool name="show_feedback">true</bool>
+  <!-- if both show_yes_no_question & show_agent_details_csat are true, show_yes_no_question will be ignored-->
+  <bool name="show_yes_no_question">true</bool>
+  <bool name="show_agent_details_csat">false</bool>
+  <bool name="show_csat_thank_you">true</bool>
+  <!-- Photo sharing Options-->
+  <bool name="enable_photo_sharing">true</bool>
+  <bool name="upload_photo_using_service">true</bool>
+  <integer name="max_number_stored_images">20</integer>
+  <integer name="full_image_compression_rate">50</integer>
+  <integer name="thumbnail_longer_dimension_resize">100</integer>
+  <integer name="full_image_longer_dimension_resize">800</integer>
+  <integer name="max_image_size_kb">3000</integer>
+  <!-- Photo sharing UI -->
+  <color name="attachment_menu_item_background_color">@color/tangerine</color>
+  <color name="lp_attachment_menu_item_icon_color">@color/lp_light_gray_1</color>
+  <color name="lp_attachment_menu_item_text_color">@color/lp_dark_gray_1</color>
+  <color name="lp_attachment_menu_background_color">@color/lp_light_gray_2</color>
+  <!-- agent PCI bubble-->
+  <!--<color name="agent_bubble_pci_form_invitation_background_color">@android:color/white</color>-->
+  <!--<color name="agent_bubble_pci_form_invitation_background_btn_color">@android:color/white</color>-->
+  <!--&lt;!&ndash;Form Outline&ndash;&gt;-->
+  <!--<color name="agent_bubble_pci_form_invitation_stroke_color">@color/tangerine</color>-->
+  <!--&lt;!&ndash;Fill in Form Button Text Color&ndash;&gt;-->
+  <!--<color name="agent_bubble_pci_form_invitation_button_text_color">@color/lightBlue</color>-->
+  <!--&lt;!&ndash;Form Description&ndash;&gt;-->
+  <!--<color name="agent_bubble_pci_form_invitation_description_text_color">@color/bloodRed</color>-->
+  <!--&lt;!&ndash;Form Header&ndash;&gt;-->
+  <!--<color name="agent_bubble_pci_form_invitation_title_text_color">@color/screamYellow</color>-->
+  <!--&lt;!&ndash;Form Icon Color&ndash;&gt;-->
+  <!--<color name="agent_bubble_pci_form_invitation_icon_tint_color">@color/purple</color>-->
+  <!---->
+  <!--PCI-->
+  <color name="lp_colorPrimary">@color/tangerine</color>
+  <color name="lp_colorPrimaryDark">@color/light_tangerine</color>
+</resources>

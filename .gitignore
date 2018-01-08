@@ -61,3 +61,5 @@ ios/LivePerson-tvOSTests/
 ios/LivePersonTests
 # Ignore Certificates
 Certificates/
+android/app/google-services.json
+# android/lp_messaging_sdk/

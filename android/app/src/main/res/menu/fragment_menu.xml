@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/urgent"
+    android:title="@string/urgent_menu_item"
+    />
+  <item
+    android:id="@+id/resolved"
+    android:title="@string/resolved_menu_item"
+    />
+  <item
+    android:id="@+id/clear"
+    android:title="@string/clear_menu_item"
+    />
+</menu>
