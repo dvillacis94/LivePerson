@@ -52,7 +52,7 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 
-# iOS ignores
+# iOS Ignores
 ios/Podfile.lock
 ios/Pods/
 ios/Podfile
@@ -61,5 +61,6 @@ ios/LivePerson-tvOSTests/
 ios/LivePersonTests
 # Ignore Certificates
 Certificates/
+# Android Ignores
 android/app/google-services.json
 android/lp_messaging_sdk/

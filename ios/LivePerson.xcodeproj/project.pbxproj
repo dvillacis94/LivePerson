@@ -31,10 +31,6 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* LivePersonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LivePersonTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		660CD0BE1FE4661B00D1589A /* LPInfra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660CD0BA1FE4661B00D1589A /* LPInfra.framework */; };
-		660CD0BF1FE4661C00D1589A /* LPMessagingSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660CD0BB1FE4661B00D1589A /* LPMessagingSDK.framework */; };
-		660CD0C01FE4661C00D1589A /* LPMessagingSDKModels.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 660CD0BC1FE4661B00D1589A /* LPMessagingSDKModels.bundle */; };
-		660CD0C11FE4661C00D1589A /* LPAMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660CD0BD1FE4661B00D1589A /* LPAMS.framework */; };
 		660CD0C41FE4815300D1589A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CD0C31FE4815300D1589A /* AppDelegate.swift */; };
 		660CD10E1FE851AE00D1589A /* MessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CD10D1FE851AE00D1589A /* MessagingView.swift */; };
 		660CD1121FE852D200D1589A /* MessagingVIewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CD1111FE852D200D1589A /* MessagingVIewManager.swift */; };
@@ -51,6 +47,10 @@
 		663393511FE9BCDE0082E1AE /* LivePersonSDK-Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 663393501FE9BCDE0082E1AE /* LivePersonSDK-Module.m */; };
 		663393761FE9CB510082E1AE /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663393751FE9CB510082E1AE /* EventEmitter.swift */; };
 		663393831FEB29510082E1AE /* libMSREventBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663393841FEB29510082E1AE /* libMSREventBridge.a */; };
+		66B7E2C7200EA9E900BFB754 /* LPInfra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B7E29F200EA9E800BFB754 /* LPInfra.framework */; };
+		66B7E2C8200EA9E900BFB754 /* LPMessagingSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B7E2C4200EA9E800BFB754 /* LPMessagingSDK.framework */; };
+		66B7E2C9200EA9E900BFB754 /* LPMessagingSDKModels.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B7E2C5200EA9E800BFB754 /* LPMessagingSDKModels.bundle */; };
+		66B7E2CA200EA9E900BFB754 /* LPAMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B7E2C6200EA9E800BFB754 /* LPAMS.framework */; };
 		66FFF1881FFC0BAD00B4B02F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FFF1871FFC0BAD00B4B02F /* Toast.swift */; };
 		76DBDBB174FA7A0C44D7EEC6 /* libPods-LivePerson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91443FB255A10BE074E4F41A /* libPods-LivePerson.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -370,10 +370,6 @@
 		2D02E4901E0B4A5D006451C7 /* LivePerson-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LivePerson-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DBFC0F4BFFD2458FEAC95A /* Pods_LivePerson_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivePerson_tvOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		660CD0BA1FE4661B00D1589A /* LPInfra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPInfra.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPInfra.framework; sourceTree = "<group>"; };
-		660CD0BB1FE4661B00D1589A /* LPMessagingSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPMessagingSDK.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPMessagingSDK.framework; sourceTree = "<group>"; };
-		660CD0BC1FE4661B00D1589A /* LPMessagingSDKModels.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LPMessagingSDKModels.bundle; path = Pods/LPMessagingSDK/LPMessagingSDK/LPMessagingSDKModels.bundle; sourceTree = "<group>"; };
-		660CD0BD1FE4661B00D1589A /* LPAMS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPAMS.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPAMS.framework; sourceTree = "<group>"; };
 		660CD0C21FE4815300D1589A /* LivePerson-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LivePerson-Bridging-Header.h"; sourceTree = "<group>"; };
 		660CD0C31FE4815300D1589A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660CD10D1FE851AE00D1589A /* MessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingView.swift; sourceTree = "<group>"; };
@@ -392,6 +388,10 @@
 		663393751FE9CB510082E1AE /* EventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 		663393841FEB29510082E1AE /* libMSREventBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMSREventBridge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		663393A81FEB298C0082E1AE /* MSREventBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MSREventBridge.xcodeproj; path = "../node_modules/react-native-event-bridge/ios/MSREventBridge.xcodeproj"; sourceTree = "<group>"; };
+		66B7E29F200EA9E800BFB754 /* LPInfra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPInfra.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPInfra.framework; sourceTree = "<group>"; };
+		66B7E2C4200EA9E800BFB754 /* LPMessagingSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPMessagingSDK.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPMessagingSDK.framework; sourceTree = "<group>"; };
+		66B7E2C5200EA9E800BFB754 /* LPMessagingSDKModels.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LPMessagingSDKModels.bundle; path = Pods/LPMessagingSDK/LPMessagingSDK/LPMessagingSDKModels.bundle; sourceTree = "<group>"; };
+		66B7E2C6200EA9E800BFB754 /* LPAMS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPAMS.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPAMS.framework; sourceTree = "<group>"; };
 		66FFF1861FFC0A8800B4B02F /* LivePerson.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LivePerson.entitlements; path = LivePerson/LivePerson.entitlements; sourceTree = "<group>"; };
 		66FFF1871FFC0BAD00B4B02F /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -417,9 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				663393831FEB29510082E1AE /* libMSREventBridge.a in Frameworks */,
-				660CD0BF1FE4661C00D1589A /* LPMessagingSDK.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
-				660CD0C11FE4661C00D1589A /* LPAMS.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -427,9 +425,11 @@
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
+				66B7E2C7200EA9E900BFB754 /* LPInfra.framework in Frameworks */,
+				66B7E2CA200EA9E900BFB754 /* LPAMS.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
-				660CD0BE1FE4661B00D1589A /* LPInfra.framework in Frameworks */,
+				66B7E2C8200EA9E900BFB754 /* LPMessagingSDK.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -685,10 +685,10 @@
 		666FA2EF1FE463CB0028BC3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				660CD0BD1FE4661B00D1589A /* LPAMS.framework */,
-				660CD0BA1FE4661B00D1589A /* LPInfra.framework */,
-				660CD0BB1FE4661B00D1589A /* LPMessagingSDK.framework */,
-				660CD0BC1FE4661B00D1589A /* LPMessagingSDKModels.bundle */,
+				66B7E2C6200EA9E800BFB754 /* LPAMS.framework */,
+				66B7E29F200EA9E800BFB754 /* LPInfra.framework */,
+				66B7E2C4200EA9E800BFB754 /* LPMessagingSDK.framework */,
+				66B7E2C5200EA9E800BFB754 /* LPMessagingSDKModels.bundle */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -812,7 +812,7 @@
 				666FA2FF1FE4645B0028BC3B /* Embed Frameworks */,
 				666FA3001FE4645B0028BC3B /* Embed PlugIns */,
 				660CD1701FE979FB00D1589A /* copy_react_headers.sh */,
-				661F6E991FFD621000D24F2E /* TODO:FIXME Warning */,
+				661F6E991FFD621000D24F2E /* TODO:FIXME:INFO Warning */,
 				661F6E9B1FFD625300D24F2E /* Clean LPMessaging Pods */,
 				661F6E9D1FFD626B00D24F2E /* Clean LPMessaging Frameworks */,
 			);
@@ -1243,7 +1243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				660CD0C01FE4661C00D1589A /* LPMessagingSDKModels.bundle in Resources */,
+				66B7E2C9200EA9E900BFB754 /* LPMessagingSDKModels.bundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1348,14 +1348,14 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n\ncd Pods/Headers\n\nrm -rf Public/React\nmkdir -p Public/React\ncd Public/React\nfor f in ../../../../../node_modules/react-native/React/**/*.h\ndo\nln -s $f\ndone\nfor f in ../../../../../node_modules/react-native/Libraries/**/*.h\ndo\nln -s $f\ndone\n\n\ncd ../..\nrm -rf Public/Yoga\nmkdir Public/Yoga\ncd Public/Yoga\nfor f in ../../../../../node_modules/react-native/ReactCommon/yoga/yoga/*.h\n                                                                        do\n                                                                        ln -s $f\n                                                                        done";
 		};
-		661F6E991FFD621000D24F2E /* TODO:FIXME Warning */ = {
+		661F6E991FFD621000D24F2E /* TODO:FIXME:INFO Warning */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "TODO:FIXME Warning";
+			name = "TODO:FIXME:INFO Warning";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

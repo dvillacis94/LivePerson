@@ -8,14 +8,7 @@
 import React, {Component} from 'react';
 // Import Components
 import {
-  View,
-  StyleSheet,
-  requireNativeComponent,
-  NativeModules,
-  NativeEventEmitter,
-  EmitterSubscription,
-  PixelRatio,
-  Platform
+  View, StyleSheet, requireNativeComponent, NativeModules, NativeEventEmitter, EmitterSubscription, PixelRatio, Platform
 } from 'react-native';
 // Import Messaging View (Window Mode) from Swift Project
 const MessagingModule = requireNativeComponent('WindowModeView');
@@ -32,7 +25,7 @@ class Messaging extends Component<{}> {
   /**
    * Conversation Closed Emitter Subscription
    */
-  conversationClosedSubscription : EmitterSubscription;
+  conversationClosedSubscription: EmitterSubscription;
 
   /**
    * App LifeCycle - Component will Mount
@@ -61,7 +54,7 @@ class Messaging extends Component<{}> {
    * Callback will contain Conversation State
    * @param conversation
    */
-  conversationWasClosed( conversation ){
+  conversationWasClosed( conversation ) {
     // Check if Conversation was dismissed
     if (conversation.state === 'dismiss') {
       // Go Back to Previous Controller
@@ -75,8 +68,7 @@ class Messaging extends Component<{}> {
    */
   static navigationOptions = ( { navigation } ) => ({
     // Navigation Title
-    title  : 'Messaging',
-    // Hide Navigation Bar
+    title  : 'Messaging', // Hide Navigation Bar
     header : Platform.select({
       ios : null
     }),
@@ -87,10 +79,9 @@ class Messaging extends Component<{}> {
    * @returns {*}
    */
   render() {
-    return (
-      <View style={styles.container}>
-        <MessagingModule style={styles.container}/>
-      </View>);
+    return (<View style={styles.container}>
+      <MessagingModule style={styles.container}/>
+    </View>);
   }
 }
 
@@ -98,11 +89,11 @@ class Messaging extends Component<{}> {
  * Styling
  */
 const styles = StyleSheet.create({
-  container     : {
+  container : {
     flex            : 1,
     backgroundColor : '#123144'
   },
-  legend        : {
+  legend    : {
     flex           : 1,
     alignSelf      : 'center',
     marginVertical : PixelRatio.getPixelSizeForLayoutSize(50),

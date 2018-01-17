@@ -13,7 +13,7 @@ import {
 // Import Messaging View from Swift Project
 const MessagingModule = requireNativeComponent('MessagingView', Messaging);
 // LivePerson Native Module - Menu (Back - Menu Buttons)
-const {LivePersonSDK} = NativeModules;
+const { LivePersonSDK } = NativeModules;
 // EventEmitter Import
 const { ReactNativeEventEmitter } = NativeModules;
 // Create New EventEmitter Instance

@@ -21,10 +21,7 @@ class LivePersonSDK: NSObject {
   // Singleton
   static let shared = LivePersonSDK()
   /// Account Number / BrandId
-  // private let account : String = "72740529"
-  private let account : String = "12054546"
-  //
-  private let jwt : String = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vZm9vLmNvbSIsInN1YiI6IkxvZ2luUGFnZTdEODE0RERGIiwibmJmIjoxNTE1MDE2NDQ4LCJpYXQiOjE1MTUwMTY0NDgsImV4cCI6MTU0NjU1MjQ0OCwianRpIjoiaWQxMjM0NTYiLCJhdWQiOiJodHRwOi8vZm9vLmNvbS9lbXBsb3llZSJ9.1-oYm2TbNIuATro-ImHEOPmfIKrH-_4h0vCfsQNA9a8M1lyGphxb8UGU76WR0dVM5Jp2mEV7ivP6XnzAIQYJdOBwccaJG9WE4SFO9mQdgBe5vih9t2EDeQShHav_HojhCekPhR5D33wvatJRLHPtQv-sCJi2XhqQTS3aIVGC70g"
+  private let account : String = ""
   /// Conversation Query
   private var conversationQuery : ConversationParamProtocol? {
     // Return Query
@@ -47,7 +44,7 @@ class LivePersonSDK: NSObject {
   // Avoid Default Init
   override init() {}
   
-  /// Will init Singleton with Account Number
+  /// Will init SDK Instance
   public func initSDK() {
     do {
       // Init LPMessagingSDK
@@ -60,16 +57,25 @@ class LivePersonSDK: NSObject {
     }
   }
   
+  /// Will Init LPMessagingSDK Logger
+  public func initLogger(){
+    // Logger
+    LPMessagingSDK.instance.subscribeLogEvents(LogLevel.trace) { (log) -> () in
+      // Logger Trace
+      print("LPMessagingSDK log: \(String(describing: log.text))")
+    }
+  }
+  
   // MARK: - LPMessaging Methods
   
   /// Will Show Conversation with a Native ViewController
   public func showConversation(){
     // Check if ConversationQuery has been set
     if self.conversationQuery != nil {
-      // Get new ConversationViewParams
+      // Create new ConversationViewParams
       let conversationViewParams = LPConversationViewParams(conversationQuery: self.conversationQuery!, containerViewController: nil, isViewOnly: false)
-      //
-      let authenticationParams = LPAuthenticationParams(jwt: self.jwt)
+      // Create Authentication Params
+      let authenticationParams = LPAuthenticationParams()
       // Show Conversation
       LPMessagingSDK.instance.showConversation(conversationViewParams, authenticationParams: authenticationParams)
     }
@@ -81,10 +87,10 @@ class LivePersonSDK: NSObject {
     if self.conversationQuery != nil {
       // Set ConversationViewController Reference
       self.conversationViewController = viewController as? MessagingViewController
-      // Get new ConversationViewParams
+      // Create new ConversationViewParams
       let conversationViewParams = LPConversationViewParams(conversationQuery: self.conversationQuery!, containerViewController: viewController, isViewOnly: false)
-      //
-      let authenticationParams = LPAuthenticationParams(jwt: self.jwt)
+      // Create Authentication Params
+      let authenticationParams = LPAuthenticationParams()
       // Show Conversation
       LPMessagingSDK.instance.showConversation(conversationViewParams, authenticationParams: authenticationParams)
     }
@@ -126,7 +132,7 @@ class LivePersonSDK: NSObject {
   public func reconnect(){
     // Check if ConversationQuery has been set
     if self.conversationQuery != nil {
-      // Create Nil Params
+      // Create Authentication Params
       let authParams = LPAuthenticationParams()
       // Show Conversation
       LPMessagingSDK.instance.reconnect(self.conversationQuery!, authenticationParams: authParams)
@@ -150,15 +156,6 @@ class LivePersonSDK: NSObject {
     } else {
       // Mark as Urgent
       LPMessagingSDK.instance.markAsUrgent(self.conversationQuery!)
-    }
-  }
-  
-  /// Will Init LPMessagingSDK Logger
-  public func initLogger(){
-    // Logger
-    LPMessagingSDK.instance.subscribeLogEvents(LogLevel.trace) { (log) -> () in
-      // Logger Trace
-      print("LPMessagingSDK log: \(String(describing: log.text))")
     }
   }
   
@@ -211,7 +208,7 @@ class LivePersonSDK: NSObject {
     // Set Ability to enable/disable Shift Toaster
     configuration.ttrShowShiftBanner = true
     
-    // TODO: LPMessagingSDK Version 2.7 introduced new Customization Options
+    // INFO: LPMessagingSDK Version 2.7 introduced new Customization Options
     
     // Set Background Color of the Connectivity Status Bar while Connecting
     // configuration.connectionStatusConnectingBackgroundColor = UIColor.lightGray
@@ -397,6 +394,8 @@ class LivePersonSDK: NSObject {
       let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
       // Toggle Resolve State Depending on Conversation State
       resolve.isEnabled = self.isConversationActive
+      // Toggle Urgent State Depending on Conversation State
+      urgent.isEnabled = self.isConversationActive
       // Add Action - Resolve
       menu.addAction(resolve)
       // Add Action - Urgent
