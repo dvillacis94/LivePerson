@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
     self.window?.makeKeyAndVisible()
     // Register Push Notification
     self.registerforPushNotification(application)
+    // Set Application Status Bar Style to Dark
+    application.statusBarStyle = .default
     // Will remove Badge Number when Application is Open
     if application.applicationState == .background || application.applicationState == .inactive {
       // Reset Badge

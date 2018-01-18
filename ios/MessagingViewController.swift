@@ -63,21 +63,16 @@ class MessagingViewController: UIViewController {
     LivePersonSDK.shared.delegate = self
     // Customize Messaging Screen
     LivePersonSDK.shared.customizeMessagingScreen()
+    // Change Status Bar Style
+    UIApplication.shared.statusBarStyle = .lightContent
+    // Update Status Bar Appearance
+    self.setNeedsStatusBarAppearanceUpdate()
   }
   
   /// App LifeCycle - Memory Warning
   override func didReceiveMemoryWarning() {
     // Super Init
     super.didReceiveMemoryWarning()
-  }
-  
-  /// App LifeCycle - View will Disappear
-  override func viewWillDisappear(_ animated: Bool) {
-    // INFO: When using Custom View Controller Mode, Conversation must be remove when leaving the App, if the Conversation View is the current screen
-    // Super Init
-    super.viewWillDisappear(animated)
-    // Remove Conversation
-    LivePersonSDK.shared.removeConversation()
   }
   
   /// App LifeCycle - View did Appear
@@ -104,6 +99,19 @@ class MessagingViewController: UIViewController {
     self.showConversation()
     // Super Init
     super.viewWillAppear(animated)
+  }
+  
+  /// App LifeCycle - View will Disappear
+  override func viewWillDisappear(_ animated: Bool) {
+    // INFO: When using Custom View Controller Mode, Conversation must be remove when leaving the App, if the Conversation View is the current screen
+    // Super Init
+    super.viewWillDisappear(animated)
+    // Remove Conversation
+    LivePersonSDK.shared.removeConversation()
+    // Change Status Bar Style
+    UIApplication.shared.statusBarStyle = .default
+    // Update Status Bar Appearance
+    self.setNeedsStatusBarAppearanceUpdate()
   }
   
   // MARK: - LPMessagingSDK Methods
