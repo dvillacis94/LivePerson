@@ -53,7 +53,7 @@ buck-out/
 */fastlane/screenshots
 
 # iOS Ignores
-ios/Podfile.lock
+#ios/Podfile.lock
 ios/Pods/
 #ios/Podfile
 ios/LivePerson-tvOS/
