@@ -44,7 +44,7 @@ LPMessagingSDK integration with React-Native
       		pod ‘LPMessagingSDK','~>2.9.0'
   	```
   	
-3. Then add the necessary Pods for React-Native
+3. **(Not Using Framworks)** Then add the necessary Pods for React-Native
 
     ```ruby
         # Uncomment the next line to define a global platform for your project
@@ -85,6 +85,26 @@ LPMessagingSDK integration with React-Native
     ```
     
     > Note: DO NOT USE FRAMEWORKS
+    
+3. **(Using Framworks)** Then add the necessary Pods for React-Native
+
+    ```ruby
+        # Uncomment the next line to define a global platform for your project
+        platform :ios, '9.0'
+        
+        source 'https://github.com/CocoaPods/Specs.git'
+        source 'https://github.com/LivePersonInc/iOSPodSpecs.git'
+        
+        target 'LivePerson' do
+          # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+          use_frameworks!
+        
+          # Pods for LivePerson
+          
+          pod 'LPMessagingSDK','3.0.0.17.1448'
+          
+        end
+    ```
     
 - If you already had a Podfile, your terminal run the following command:
 
