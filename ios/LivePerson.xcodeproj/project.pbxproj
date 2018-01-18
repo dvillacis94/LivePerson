@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00B70723A836DBBE6E192574 /* Pods_LivePerson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B174C9F9F63EF1DCB1ABD038 /* Pods_LivePerson.framework */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
@@ -47,12 +48,7 @@
 		663393511FE9BCDE0082E1AE /* LivePersonSDK-Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 663393501FE9BCDE0082E1AE /* LivePersonSDK-Module.m */; };
 		663393761FE9CB510082E1AE /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663393751FE9CB510082E1AE /* EventEmitter.swift */; };
 		663393831FEB29510082E1AE /* libMSREventBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663393841FEB29510082E1AE /* libMSREventBridge.a */; };
-		66B7E2C7200EA9E900BFB754 /* LPInfra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B7E29F200EA9E800BFB754 /* LPInfra.framework */; };
-		66B7E2C8200EA9E900BFB754 /* LPMessagingSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B7E2C4200EA9E800BFB754 /* LPMessagingSDK.framework */; };
-		66B7E2C9200EA9E900BFB754 /* LPMessagingSDKModels.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B7E2C5200EA9E800BFB754 /* LPMessagingSDKModels.bundle */; };
-		66B7E2CA200EA9E900BFB754 /* LPAMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B7E2C6200EA9E800BFB754 /* LPAMS.framework */; };
 		66FFF1881FFC0BAD00B4B02F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FFF1871FFC0BAD00B4B02F /* Toast.swift */; };
-		76DBDBB174FA7A0C44D7EEC6 /* libPods-LivePerson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91443FB255A10BE074E4F41A /* libPods-LivePerson.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
@@ -388,19 +384,15 @@
 		663393751FE9CB510082E1AE /* EventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 		663393841FEB29510082E1AE /* libMSREventBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMSREventBridge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		663393A81FEB298C0082E1AE /* MSREventBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MSREventBridge.xcodeproj; path = "../node_modules/react-native-event-bridge/ios/MSREventBridge.xcodeproj"; sourceTree = "<group>"; };
-		66B7E29F200EA9E800BFB754 /* LPInfra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPInfra.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPInfra.framework; sourceTree = "<group>"; };
-		66B7E2C4200EA9E800BFB754 /* LPMessagingSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPMessagingSDK.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPMessagingSDK.framework; sourceTree = "<group>"; };
-		66B7E2C5200EA9E800BFB754 /* LPMessagingSDKModels.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LPMessagingSDKModels.bundle; path = Pods/LPMessagingSDK/LPMessagingSDK/LPMessagingSDKModels.bundle; sourceTree = "<group>"; };
-		66B7E2C6200EA9E800BFB754 /* LPAMS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LPAMS.framework; path = Pods/LPMessagingSDK/LPMessagingSDK/LPAMS.framework; sourceTree = "<group>"; };
 		66FFF1861FFC0A8800B4B02F /* LivePerson.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LivePerson.entitlements; path = LivePerson/LivePerson.entitlements; sourceTree = "<group>"; };
 		66FFF1871FFC0BAD00B4B02F /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7FC07491DA026F42DFC0ED4A /* Pods-LivePerson.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivePerson.release.xcconfig"; path = "Pods/Target Support Files/Pods-LivePerson/Pods-LivePerson.release.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83F6668C7BBF32FF79D08714 /* Pods_LivePersonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivePersonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		91443FB255A10BE074E4F41A /* libPods-LivePerson.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LivePerson.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B12BDBB07F65CB1E5B5DD32 /* Pods-LivePerson.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivePerson.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LivePerson/Pods-LivePerson.debug.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B174C9F9F63EF1DCB1ABD038 /* Pods_LivePerson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivePerson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,15 +417,12 @@
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
-				66B7E2C7200EA9E900BFB754 /* LPInfra.framework in Frameworks */,
-				66B7E2CA200EA9E900BFB754 /* LPAMS.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
-				66B7E2C8200EA9E900BFB754 /* LPMessagingSDK.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				76DBDBB174FA7A0C44D7EEC6 /* libPods-LivePerson.a in Frameworks */,
+				00B70723A836DBBE6E192574 /* Pods_LivePerson.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +539,6 @@
 				661F6E941FFD598000D24F2E /* Bridge - Window Mode */,
 				660CD10C1FE8518A00D1589A /* Messaging - ViewController Mode */,
 				661F6E911FFD588B00D24F2E /* Messaging - Window Mode */,
-				666FA2EF1FE463CB0028BC3B /* Frameworks */,
 				666FA2EE1FE462510028BC3B /* Extras */,
 				666FA2D11FE462380028BC3B /* Delegates */,
 				666FA2ED1FE462420028BC3B /* Resources */,
@@ -682,17 +670,6 @@
 			name = Extras;
 			sourceTree = "<group>";
 		};
-		666FA2EF1FE463CB0028BC3B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				66B7E2C6200EA9E800BFB754 /* LPAMS.framework */,
-				66B7E29F200EA9E800BFB754 /* LPInfra.framework */,
-				66B7E2C4200EA9E800BFB754 /* LPMessagingSDK.framework */,
-				66B7E2C5200EA9E800BFB754 /* LPMessagingSDKModels.bundle */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,7 +749,7 @@
 				663393841FEB29510082E1AE /* libMSREventBridge.a */,
 				56DBFC0F4BFFD2458FEAC95A /* Pods_LivePerson_tvOSTests.framework */,
 				83F6668C7BBF32FF79D08714 /* Pods_LivePersonTests.framework */,
-				91443FB255A10BE074E4F41A /* libPods-LivePerson.a */,
+				B174C9F9F63EF1DCB1ABD038 /* Pods_LivePerson.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1243,7 +1220,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				66B7E2C9200EA9E900BFB754 /* LPMessagingSDKModels.bundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -55,7 +55,7 @@ buck-out/
 # iOS Ignores
 ios/Podfile.lock
 ios/Pods/
-ios/Podfile
+#ios/Podfile
 ios/LivePerson-tvOS/
 ios/LivePerson-tvOSTests/
 ios/LivePersonTests
