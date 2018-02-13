@@ -9,7 +9,6 @@ target 'LivePerson' do
   use_frameworks!
 
   # Pods for LivePerson
-  
   pod 'LPMessagingSDK','3.0.0.17.1448'
   
 end

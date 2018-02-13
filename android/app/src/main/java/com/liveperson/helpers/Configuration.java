@@ -9,9 +9,9 @@ public class Configuration {
   // Brand ID
   public static final String BRAND_ID = "51007909";
   // LE Alpha Account
-  // public static final String ALPHA = "72740529";
+  public static final String ALPHA = "72740529";
   // Account with JWT
-  public static final String ALPHA = "12054546";
+  // public static final String ALPHA = "12054546";
   // Firebase ID
   public static final String FIREBASE_ID = "com.liveperson";
   //

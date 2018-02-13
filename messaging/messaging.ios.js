@@ -12,8 +12,6 @@ import {
 } from 'react-native';
 // Import Messaging View from Swift Project
 const MessagingModule = requireNativeComponent('MessagingView', Messaging);
-// LivePerson Native Module - Menu (Back - Menu Buttons)
-const { LivePersonSDK } = NativeModules;
 // EventEmitter Import
 const { ReactNativeEventEmitter } = NativeModules;
 // Create New EventEmitter Instance
@@ -28,6 +26,7 @@ class Messaging extends Component<{}> {
    * Agent Emitter Subscription
    */
   agentDetailsSubscription : EmitterSubscription;
+  backButtonSubscription : EmitterSubscription;
 
   /**
    * App LifeCycle - Component will Mount
@@ -35,6 +34,8 @@ class Messaging extends Component<{}> {
   componentWillMount() {
     // Add Agent Details Listener
     this.agentDetailsSubscription = reactNativeEventEmitter.addListener('AgentDetails', this.agentDetails, this);
+    //
+    this.backButtonSubscription = reactNativeEventEmitter.addListener('BackButtonPressed', this.popView, this);
   }
 
   /**
@@ -49,7 +50,9 @@ class Messaging extends Component<{}> {
    */
   componentWillUnmount() {
     // Remove Agent Details Listener
-    this.agentDetailsSubscription.remove()
+    this.agentDetailsSubscription.remove();
+    // Remove Back Button Pressed Listener
+    this.backButtonSubscription.remove();
   }
 
   /**
@@ -64,6 +67,11 @@ class Messaging extends Component<{}> {
     this.props.navigation.setParams({ title: title });
   }
 
+  popView () {
+    //
+    this.props.navigation.goBack();
+  }
+
   /**
    * Will Override Navigation Options
    * @param navigation
@@ -72,6 +80,8 @@ class Messaging extends Component<{}> {
   static navigationOptions = ( { navigation } ) => ({
     // Navigation Bar Title
     title           : typeof(navigation.state.params)==='undefined' || typeof(navigation.state.params.title) === 'undefined' ? 'Messaging': navigation.state.params.title,
+    //
+    header : null,
     // Set Back Button
     headerLeft      : (
       // Create Back Button
@@ -79,7 +89,7 @@ class Messaging extends Component<{}> {
         // View Style
         style={styles.backButton}
         // View Action
-        onPress={() => navigation.goBack()}>
+        onPress={()=>navigation.goBack()}>
         <Text
           // Button Text Style
           style={styles.navButtonText}>
@@ -94,7 +104,7 @@ class Messaging extends Component<{}> {
         // View Style
         style={styles.menuButton}
         // View Action
-        onPress={() => LivePersonSDK.menuButtonPressed()}>
+        onPress={() => {}}>
         <Text
           // Button Text Style
           style={styles.navButtonText}>
@@ -122,7 +132,7 @@ class Messaging extends Component<{}> {
 const styles = StyleSheet.create({
   container     : {
     flex            : 1,
-    backgroundColor : '#123144'
+    backgroundColor : '#FFFFFF'
   },
   navigationBar : {
     backgroundColor : '#f49012',

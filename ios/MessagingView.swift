@@ -53,9 +53,17 @@ class MessagingView: UIView {
     // Reference to MessagingViewController
     let messaging = MessagingViewController()
     // Add Controller to ParentController
-    parent.addChildViewController(messaging)
+    // parent.addChildViewController(messaging)
     // Add MessagingView
-    addSubview(messaging.view)
+    // addSubview(messaging.view)
+    // Createa Navigation Controller
+    let navigation = UINavigationController(rootViewController: messaging)
+    // Present Navigatio Controller
+    parent.present(navigation, animated: true, completion: nil)
+    // Set Navigation Bar - Tint Color
+    navigation.navigationBar.barTintColor = UIColor.tangerine
+    // Set Navigation Bar - Items Tint Color
+    navigation.navigationBar.tintColor = UIColor.white
     // Set Frame
     messaging.view.frame = bounds
     // MessagingController did Move

@@ -14,7 +14,7 @@ import {
 import MessagingModule from './messaging/messaging.android.module'
 // TODO : Android Fragment Mode Flag, if true, will select Fragment Method, esle will use and Activity
 // TODO : In the case of 2 Components are use for each case, this is handle in the index.js
-let FRAGMENT_MODE = false;
+let FRAGMENT_MODE = true;
 /**
  * Main Screen Component
  **/
