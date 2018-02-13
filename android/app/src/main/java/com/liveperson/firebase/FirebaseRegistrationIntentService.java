@@ -36,10 +36,10 @@ public class FirebaseRegistrationIntentService extends IntentService {
     // LOG - Token
     Log.d(TAG, "Token :: " + token);
     // LOG - Brand Id
-    Log.d(TAG, "Brand :: " + Configuration.ALPHA);
+    Log.d(TAG, "Brand :: " + Configuration.BRAND_ID);
     // LOG - Firebase Id
     Log.d(TAG, "Firebase :: " + Configuration.FIREBASE_ID);
     // Register to LivePerson Pusher
-    LivePerson.registerLPPusher(Configuration.ALPHA, Configuration.FIREBASE_ID, token);
+    LivePerson.registerLPPusher(Configuration.BRAND_ID, Configuration.FIREBASE_ID, token);
   }
 }

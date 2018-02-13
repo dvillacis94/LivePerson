@@ -21,7 +21,7 @@ class LivePersonSDK: NSObject {
   /// Singleton
   static let shared = LivePersonSDK()
   /// Account Number / BrandId
-  private let account : String = "72740529"
+  private let account : String = ""
   /// Conversation Query
   private var conversationQuery : ConversationParamProtocol? {
     // Return Query

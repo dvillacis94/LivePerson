@@ -202,8 +202,7 @@ public class FragmentContainerActivity extends AppCompatActivity {
    */
   private void initSDK(){
     // Init LPMessagingSDK
-    LivePerson.initialize(getApplicationContext(), new InitLivePersonProperties(Configuration.ALPHA, Configuration.FIREBASE_ID, new InitLivePersonCallBack() {
-
+    LivePerson.initialize(getApplicationContext(), new InitLivePersonProperties(Configuration.BRAND_ID, Configuration.FIREBASE_ID, new InitLivePersonCallBack() {
       /**
        * LivePerson SDK was init
        */
@@ -376,7 +375,7 @@ public class FragmentContainerActivity extends AppCompatActivity {
       }*/
       //</editor-fold>
       // TODO : Create Fragment add setHostAppJWT(), setAuthKey(), or setHostAppRedirectUri() to LPAuthenticationParams() depeding on needs
-      mConversationFragment = (ConversationFragment) LivePerson.getConversationFragment(new LPAuthenticationParams().setHostAppJWT(Configuration.JWT), new ConversationViewParams(false));
+      mConversationFragment = (ConversationFragment) LivePerson.getConversationFragment(new LPAuthenticationParams(), new ConversationViewParams(false));
       // Check is State is Valid
       if (isValidState()) {
         // Pending intent for image foreground service

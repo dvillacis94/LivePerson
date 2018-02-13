@@ -51,7 +51,7 @@ public class MessagingModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void showActivity(){
     // Init LPMessagingSDK
-    this.initMessagingSDK(Configuration.ALPHA, Configuration.FIREBASE_ID);
+    this.initMessagingSDK(Configuration.BRAND_ID, Configuration.FIREBASE_ID);
   }
 
   /**
@@ -107,7 +107,7 @@ public class MessagingModule extends ReactContextBaseJavaModule {
    */
   private void showConversation() {
     // Init Show Conversation
-    LivePerson.showConversation(getCurrentActivity(), new LPAuthenticationParams().setHostAppJWT(Configuration.JWT), new ConversationViewParams(false));
+    LivePerson.showConversation(getCurrentActivity(), new LPAuthenticationParams(), new ConversationViewParams(false));
     // Consumer Profile
     ConsumerProfile consumerProfile = new ConsumerProfile.Builder()
         .setFirstName("John")

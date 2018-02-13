@@ -60,7 +60,7 @@ public class LPFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
           // Get Remote Notification
-          message = LivePerson.handlePushMessage(this, remoteMessage.getData(), Configuration.ALPHA, false);
+          message = LivePerson.handlePushMessage(this, remoteMessage.getData(), Configuration.BRAND_ID, false);
           //Code snippet to add push UI notification
           if (message != null) {
             // Check Application State
