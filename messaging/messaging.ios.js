@@ -26,6 +26,10 @@ class Messaging extends Component<{}> {
    * Agent Emitter Subscription
    */
   agentDetailsSubscription : EmitterSubscription;
+
+  /**
+   * Back Button Emitter Subscription
+   */
   backButtonSubscription : EmitterSubscription;
 
   /**
@@ -34,7 +38,7 @@ class Messaging extends Component<{}> {
   componentWillMount() {
     // Add Agent Details Listener
     this.agentDetailsSubscription = reactNativeEventEmitter.addListener('AgentDetails', this.agentDetails, this);
-    //
+    // Add Back Button Pressed Listener
     this.backButtonSubscription = reactNativeEventEmitter.addListener('BackButtonPressed', this.popView, this);
   }
 
@@ -67,8 +71,11 @@ class Messaging extends Component<{}> {
     this.props.navigation.setParams({ title: title });
   }
 
+  /**
+   * Will Pop to Previous View
+   */
   popView () {
-    //
+    // Go One Level Back
     this.props.navigation.goBack();
   }
 
@@ -80,7 +87,7 @@ class Messaging extends Component<{}> {
   static navigationOptions = ( { navigation } ) => ({
     // Navigation Bar Title
     title           : typeof(navigation.state.params)==='undefined' || typeof(navigation.state.params.title) === 'undefined' ? 'Messaging': navigation.state.params.title,
-    //
+    // TODO: This prevents the Navigation Bar to be show in this View
     header : null,
     // Set Back Button
     headerLeft      : (
