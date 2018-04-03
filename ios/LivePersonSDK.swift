@@ -21,7 +21,7 @@ class LivePersonSDK: NSObject {
   /// Singleton
   static let shared = LivePersonSDK()
   /// Account Number / BrandId
-  private let account : String = ""
+  private var account : String = "72740529"
   /// Conversation Query
   private var conversationQuery : ConversationParamProtocol? {
     // Return Query
@@ -40,7 +40,12 @@ class LivePersonSDK: NSObject {
   }
   /// Flag to know if ViewController should be Remove, ViewController Should only be remove when BackButton is pressed
   public var shouldRemoveViewController : Bool = false
-  /// Will get Device Timezone
+  /// Will Set/Get if Window Mode is On
+  public var isWindowMode : Bool {
+    get { return UserDefaults.standard.bool(forKey: "WINDOW_MODE") }
+    set { UserDefaults.standard.set(newValue, forKey: "WINDOW_MODE") }
+  }
+  // Will get Device Timezone
   public var timeZone : String {
     get { return TimeZone.current.identifier }
   }
@@ -55,6 +60,24 @@ class LivePersonSDK: NSObject {
     do {
       // Init LPMessagingSDK
       try LPMessagingSDK.instance.initialize()
+    } catch let error as NSError {
+      // Print Error
+      print("initialize error: \(error)")
+      // Escape
+      return
+    }
+  }
+  
+  /// Will init Singleton with Account Number
+  ///
+  /// - Parameter brandId: Account Number
+  public func initSDKWithBrand(_ brandID : String ) {
+    //
+    do {
+      // Change Account Number
+      self.account = brandID
+      // Init LPMessagingSDK
+      try LPMessagingSDK.instance.initialize(brandID)
     } catch let error as NSError {
       // Print Error
       print("initialize error: \(error)")
@@ -142,15 +165,25 @@ class LivePersonSDK: NSObject {
   }
   
   /// Will logout Current User from LPMessagingSDK
-  public func logout(){
+  ///
+  /// - Returns: Error
+  public func logout() -> Error? {
+    // Set Error Holder
+    var err : Error?
     // Logout SDK
     LPMessagingSDK.instance.logout(completion: {
       // Log - Success
-      print("User::logged out")
+      print("Logout :: Success")
+      // Return Error - Nil
+      err = nil
     }) { (error) in
       // Log - Error
-      print("User:: \(error.localizedDescription)")
+      print("Logout :: \(error.localizedDescription)")
+      // Set Error
+      err =  error
     }
+    // Return Error
+    return err
   }
   
   /// Will reconnect to current Conversation
@@ -184,6 +217,14 @@ class LivePersonSDK: NSObject {
     }
   }
   
+  /// Will return Prevously Assigned Agent if any
+  ///
+  /// - Returns: Nil if no Agent is assigned
+  public func getAgentDetails() -> LPUser?{
+    // Get Agent Details
+    return LPMessagingSDK.instance.getAssignedAgent(self.conversationQuery!)
+  }
+  
   // MARK: - Customization
   
   /// Will customize Messaging Screen
@@ -194,11 +235,11 @@ class LivePersonSDK: NSObject {
     // INFO : Agent Configurations
     
     // Set Agent - Bubble Background Color
-    configuration.remoteUserBubbleBackgroundColor = UIColor.tangerine
+    configuration.remoteUserBubbleBackgroundColor = UIColor.turquoise
     // Set Agent - Bubble Border Color
-    configuration.remoteUserBubbleBorderColor = UIColor.tangerine
+    configuration.remoteUserBubbleBorderColor = UIColor.turquoise
     // Set Agent - Link Color
-    // configuration.remoteUserBubbleLinkColor = UIColor.tangerine
+    // configuration.remoteUserBubbleLinkColor = UIColor.turquoise
     // Set Agent - Default Image
     // configuration.remoteUserDefaultAvatarImage = UIImage(named: "")
     // Set Agent - Text Color
@@ -206,11 +247,11 @@ class LivePersonSDK: NSObject {
     // Set Agent - Avatar Silhouette Color
     configuration.remoteUserAvatarIconColor = UIColor.white
     // Set Agent - Avatar Background Color
-    configuration.remoteUserAvatarBackgroundColor = UIColor.tangerine
+    configuration.remoteUserAvatarBackgroundColor = UIColor.turquoise
     // Set Agent - Text Bubble Border Width
     configuration.remoteUserBubbleBorderWidth = 1.0
     // Set Agent - Timestamp Color
-    configuration.remoteUserBubbleTimestampColor = UIColor.tangerine
+    configuration.remoteUserBubbleTimestampColor = UIColor.turquoise
     // Set Agent - User Typing Animation Color
     configuration.remoteUserTypingTintColor = UIColor.white
     // Set Color of the remote user's bubble overlay when user uses a long press gesture on the bubble.
@@ -237,15 +278,15 @@ class LivePersonSDK: NSObject {
     // Set User - Text Bubble Border Color
     configuration.userBubbleBorderColor = UIColor.white
     // Set User - Link Color
-    configuration.userBubbleLinkColor = UIColor.tangerine
+    configuration.userBubbleLinkColor = UIColor.turquoise
     // Set User - Text Bubble Border Width
     configuration.userBubbleBorderWidth = 1.5
     // Set User Text Color
-    configuration.userBubbleTextColor = UIColor.tangerine
+    configuration.userBubbleTextColor = UIColor.turquoise
     // Set User - Timestamp Color
-    configuration.userBubbleTimestampColor = UIColor.tangerine
+    configuration.userBubbleTimestampColor = UIColor.turquoise
     // Set User - Sent Status Text Color
-    configuration.userBubbleSendStatusTextColor = UIColor.tangerine
+    configuration.userBubbleSendStatusTextColor = UIColor.turquoise
     // Set User - Error Text Color (!)
     configuration.userBubbleErrorTextColor = UIColor.red
     // Set User - Error Bubble Border Color
@@ -283,22 +324,22 @@ class LivePersonSDK: NSObject {
     // Set Site Name Color for the Link Preview Area
     configuration.linkPreviewSiteNameTextColor = UIColor(red:0.29, green:0.51, blue:0.52, alpha:1.0)
     // Set Title Text Color for the Link Preview Area
-    configuration.linkPreviewTitleTextColor = UIColor.tangerine
+    configuration.linkPreviewTitleTextColor = UIColor.turquoise
     // Set URL Real Time Preview - Background Color
     configuration.urlRealTimePreviewBackgroundColor = UIColor.white
     // Set URL Real Time Preview - Border Color
-    configuration.urlRealTimePreviewBorderColor = UIColor.tangerine
+    configuration.urlRealTimePreviewBorderColor = UIColor.turquoise
     // Set URL Real Time Preview - Border Width
     configuration.urlRealTimePreviewBorderWidth = 1.5
     // Set URL Real Time Preview - Title Color
-    configuration.urlRealTimePreviewTitleTextColor = UIColor.tangerine
+    configuration.urlRealTimePreviewTitleTextColor = UIColor.turquoise
     // Set URL Real Time Preview - Description Text Color
-    configuration.urlRealTimePreviewDescriptionTextColor = UIColor.tangerine
+    configuration.urlRealTimePreviewDescriptionTextColor = UIColor.turquoise
     
     // INFO: General Configurations
     
     // Set Send Button Color - Enable
-    configuration.sendButtonEnabledColor = UIColor.tangerine
+    configuration.sendButtonEnabledColor = UIColor.turquoise
     // Set Send Button Color - Disable
     configuration.sendButtonDisabledColor = UIColor.lightGray
     // Set Unread Messages Divider - Background Color
@@ -310,18 +351,20 @@ class LivePersonSDK: NSObject {
     // If Set true, accessibility announces when agent is typing
     configuration.announceAgentTyping = true
     // Set Text Color for System Messages
-    configuration.systemBubbleTextColor = UIColor.tangerine
+    configuration.systemBubbleTextColor = UIColor.turquoise
     // Set Duration of Local Notification - TimeToRespond notification, local notification, etc.
     configuration.notificationShowDurationInSeconds = 1
     // Set Controller Text Color - Initial Welcoming Message
-    configuration.controllerBubbleTextColor = UIColor.tangerine.darker()!
+    configuration.controllerBubbleTextColor = UIColor.turquoise.darker()!
     // Should Enable vibration when a new message from a remote user received
     configuration.enableVibrationOnMessageFromRemoteUser = true
+    // This option lets you decide whether to get assigned agents from active conversations only, or also from the last closed conversation in case there is no active conversation. If not assigned agent is available this method will return nil.
+    configuration.retrieveAssignedAgentFromLastClosedConversation = true
+    // TODO : Set Color for ConversationView Controller Empty - LPConversationHistoryControlParam gives an empty history
+    // configuration.conversationEmptyStateTextColor = UIColor.red
     
     // INFO: Brand Configurations
     
-    // Set Brand Name
-    configuration.brandName = "LivePerson"
     // Set Brand - Image Avatar - Ratio 1:1 (at least 50x50)
     // configuration.brandAvatarImage = UIImage(named: "")
     // Set Conversation Background Color
@@ -346,7 +389,7 @@ class LivePersonSDK: NSObject {
     // INFO: Unread Messages Configurations
     
     // Set Scroll to Bottom Button - Background Color
-    configuration.scrollToBottomButtonBackgroundColor = UIColor.tangerine
+    configuration.scrollToBottomButtonBackgroundColor = UIColor.turquoise
     // Set Scroll to Bottom Button - Text Color
     configuration.scrollToBottomButtonMessagePreviewTextColor = UIColor.white
     // Set Scroll to Bottom Button - Unread Message Badge Background Color
@@ -375,23 +418,31 @@ class LivePersonSDK: NSObject {
     // Set Number of Files that will be save on disk, Exceeding files are deleted when the App Closes.
     configuration.maxNumberOfSavedFilesOnDisk = 20
     // Set the Background Color on Photo Sharing Menu
-    configuration.photosharingMenuBackgroundColor = UIColor.tangerine
+    configuration.photosharingMenuBackgroundColor = UIColor.turquoise
     // Set the text of buttons on Photo Sharing Menu
     configuration.photosharingMenuButtonsTextColor = UIColor.white
     // Set Photo Share Menu Button's Background Color
     configuration.photosharingMenuButtonsBackgroundColor = UIColor.white
     // Set Photo Sharing Menu Buttons Outline Color
-    configuration.photosharingMenuButtonsTintColor = UIColor.tangerine
+    configuration.photosharingMenuButtonsTintColor = UIColor.turquoise
     // Set  Photo Sharing Camera Button Enabled State Color
-    configuration.cameraButtonEnabledColor = UIColor.tangerine
+    configuration.cameraButtonEnabledColor = UIColor.turquoise
     // Set  Photo Sharing Camera Button Disable State Color
-    configuration.cameraButtonDisabledColor = UIColor.tangerine.lighter(by: 20)!
+    configuration.cameraButtonDisabledColor = UIColor.turquoise.lighter(by: 20)!
     // Set Radial loader fill color
-    configuration.fileCellLoaderFillColor = UIColor.tangerine.lighter(by: 20)!
+    configuration.fileCellLoaderFillColor = UIColor.turquoise.lighter(by: 20)!
     // Set Radial loader progress color
-    configuration.fileCellLoaderRingProgressColor = UIColor.tangerine
+    configuration.fileCellLoaderRingProgressColor = UIColor.turquoise
     // Set Radial loader progress background color
     configuration.fileCellLoaderRingBackgroundColor = UIColor.white
+    // Set PhotoSharing Menu - Select from Camera Icon
+    // TODO :  configuration.photoSharingMenuCameraImage = UIImage(named: "CameraIcon")
+    // Set PhotoSharing Menu - Select from Library Icon
+    // TODO : configuration.photoSharingMenuLibraryImage = UIImage(named: "LibraryIcon")
+    // Set PhotoSharing Open - Menu Icon
+    // TODO : configuration.photoSharingOpenMenuImageButton = UIImage(named: "PhotoSharingMenuIcon")
+    // Set PhotoSharing Menu - Close Icon
+    // TODO : configuration.photoSharingCloseMenuImageButton = UIImage(named: "CloseMenuIcon")
     
     // INFO: Delivery Notifications Options
     
@@ -400,24 +451,26 @@ class LivePersonSDK: NSObject {
     // Set Check Mark Visibility (SentAndAccepted, SentOnly, All)
     configuration.checkmarkVisibility = CheckmarksState.sentAndAccepted
     // Checkmark Color for Read Messages
-    configuration.checkmarkReadColor = UIColor.tangerine
+    configuration.checkmarkReadColor = UIColor.turquoise
     // Checkmark Color for Distributed Messages
-    configuration.checkmarkDistributedColor = UIColor.tangerine.darker(by: 10)!
+    configuration.checkmarkDistributedColor = UIColor.turquoise.darker(by: 10)!
     // Checkmark Color for Sent Messages
-    configuration.checkmarkSentColor = UIColor.tangerine.darker(by: 20)!
+    configuration.checkmarkSentColor = UIColor.turquoise.darker(by: 20)!
+    // When false (default), time stamps will display information relative to when sent/distributed/read (e.g. 'sent 5 minutes ago'. When true, will show as numeric only (e.g. '11:32').
+    // TODO : configuration.messageStatusNumericTimestampOnly = false
     
     // INFO: Time to Response Configurations
     
     // Set Ability to enable/disable Shift Toaster
     configuration.ttrShowShiftBanner = true
     // Set Time to Response - Number of seconds before the first TTR notification appears.
-    configuration.ttrFirstTimeDelay = 0.5
+    configuration.ttrFirstTimeDelay = 0
     // Set Time to Response - Enable: Displays a time stamp in the TTR notification. Disable: Displays: "An agent will respond shortly".
     configuration.ttrShouldShowTimestamp = true
     // Set Time to Response - Don’t show the TTR more than once in X seconds.
     configuration.ttrShowFrequencyInSeconds = 0
     // Disable/Enable the off-hours Toaster.
-    // configuration.showOffHoursBanner = true
+    configuration.showOffHoursBanner = true
     // Set Time to Response - Background Color
     // configuration.ttrBannerBackgroundColor = UIColor.lightGray
     // Set Time to Response - Text Color
@@ -425,8 +478,8 @@ class LivePersonSDK: NSObject {
     // Set Time to Response - Banner Opacity
     // configuration.ttrBannerOpacityAlpha = 0.8
     // Set Time to Response - TimeZone Name, if not set UTC is used
-    // configuration.offHoursTimeZoneName = self.timeZone
-    print("Time Zone :: \(timeZone)")
+    configuration.offHoursTimeZoneName = self.timeZone
+    //print("Time Zone :: \(timeZone)")
     
     // INFO: Date Separator Configurations
     
@@ -435,9 +488,9 @@ class LivePersonSDK: NSObject {
     // Set Date Separator - Title Background Color
     configuration.dateSeparatorTitleBackgroundColor = UIColor.white
     // Set Date Separator - Text Color
-    configuration.dateSeparatorTextColor = UIColor.tangerine
+    configuration.dateSeparatorTextColor = UIColor.turquoise
     // Set Date Separator - Line Color
-    configuration.dateSeparatorLineBackgroundColor = UIColor.tangerine
+    configuration.dateSeparatorLineBackgroundColor = UIColor.turquoise
     // Set Date Separator - Background Color
     configuration.dateSeparatorBackgroundColor = UIColor.white
     // Set Date Separator - Font Text Style
@@ -486,8 +539,11 @@ class LivePersonSDK: NSObject {
     self.customizeSurvey(config: configuration)
     // Customize Secure Forms
     self.customizeSecureForms(config: configuration)
-    // Customize Window Mode
-    self.customizeWindowMode(configuration)
+    // Check if Window Mode
+    if isWindowMode {
+      // Customize Window Mode
+      self.customizeWindowMode(configuration)
+    }
     // Print Configurations
     LPConfig.printAllConfigurations()
   }
@@ -496,8 +552,10 @@ class LivePersonSDK: NSObject {
   ///
   /// - Parameter config: LPConfig
   private func customizeWindowMode(_ config : LPConfig){
+    // Set Brand Name
+    config.brandName = "LivePerson"
     // Set Navigation Bar Background Color
-    config.conversationNavigationBackgroundColor = UIColor.tangerine
+    config.conversationNavigationBackgroundColor = UIColor.turquoise
     // Add Custom Button to Navigation Bar
     config.customButtonImage = UIImage(named: "")
     // Set Conversation Navigation Bar Items Color
@@ -517,7 +575,7 @@ class LivePersonSDK: NSObject {
     // Set Maximum number of minutes to send the message
     config.sendingMessageTimeoutInMinutes = 60
     // Set Conversation separator text and line color
-    config.conversationSeparatorTextColor = UIColor.tangerine.darker()!
+    config.conversationSeparatorTextColor = UIColor.turquoise.darker()!
     // Should show separator text message when conversation resolved from agent or consumer
     config.enableConversationSeparatorTextMessage = true
     // Should show Separator Line
@@ -558,7 +616,7 @@ class LivePersonSDK: NSObject {
     // INFO: Secure Form Screen Configurations
     
     // Set Navigation Bar Background Color for Secure Form
-    config.secureFormNavigationBackgroundColor = UIColor.tangerine
+    config.secureFormNavigationBackgroundColor = UIColor.turquoise
     // Set Navigation Bar Title Color
     config.secureFormNavigationTitleColor = UIColor.white
     // Set font name to be used when the user is completing the secure form. If not set, the default font is Helvetica
@@ -575,15 +633,15 @@ class LivePersonSDK: NSObject {
     // Set Agent - Segure Form Bubble Background Color
     config.secureFormBubbleBackgroundColor = UIColor.white
     // Set Agent - Secure Form Bubble Border Color
-    config.secureFormBubbleBorderColor = UIColor.tangerine
+    config.secureFormBubbleBorderColor = UIColor.turquoise
     // Set Agent - Secure Form Bubble Border Width
     config.secureFormBubbleBorderWidth = 3.0
     // Set Agent - Secure Form Bubble Title Text Color
-    config.secureFormBubbleTitleColor = UIColor.tangerine
+    config.secureFormBubbleTitleColor = UIColor.turquoise
     // Set Agent - Secure Form Bubble Description Text Color
-    config.secureFormBubbleDescriptionColor = UIColor.tangerine
+    config.secureFormBubbleDescriptionColor = UIColor.turquoise
     // Set Agent - Secure Form Bubble - Fill in Form Button Background Color
-    config.secureFormBubbleFillFormButtonBackgroundColor = UIColor.tangerine
+    config.secureFormBubbleFillFormButtonBackgroundColor = UIColor.turquoise
     // Set SecureForm Image Outline Color
     config.secureFormBubbleFormImageTintColor = UIColor.red
     // Set SecureForm "Fill in form" Text Color
@@ -598,26 +656,26 @@ class LivePersonSDK: NSObject {
   private func customizeSurvey(config: LPConfig) {
     // Show Survey when Resolve Conversation
     config.csatShowSurveyView = true
-    // Should Hide CSAT Resolution
+    // Should Hide the FCR survey (YES/NO) question.
     config.csatResolutionHidden = false
     // Should Hide Agent Avatar and Name from CSAT
-    config.csatAgentViewHidden = false
+    config.csatAgentViewHidden = true
     // Should Hide Thank You screen after tapping Submit button
     config.csatThankYouScreenHidden = true
     // Set Survey - Avatar Background Color
-    // config.csatAgentAvatarBackgroundColor = UIColor.tangerine
+    // config.csatAgentAvatarBackgroundColor = UIColor.turquoise
     // Set Survey - Avatar Color
-    // config.csatAgentAvatarIconColor = UIColor.tangerine
+    // config.csatAgentAvatarIconColor = UIColor.turquoise
     // Set Expiration Time for CSAT in minutes - If Survey exceeded the expiration, it will not be presented to the user
     config.csatSurveyExpirationInMinutes = 7200
     // Set Survey Background Color of the Rating Stars
-    config.csatRatingButtonSelectedColor = UIColor.tangerine
+    config.csatRatingButtonSelectedColor = UIColor.turquoise
     // Set Survey Color for the FCR survey buttons (YES/NO) when selected.
-    config.csatResolutionButtonSelectedColor = UIColor.tangerine
+    config.csatResolutionButtonSelectedColor = UIColor.turquoise
     // Set Survey Text Color for all Labels.
-    config.csatAllTitlesTextColor = UIColor.tangerine
+    config.csatAllTitlesTextColor = UIColor.turquoise
     // Set Survey Navigation Bar Background Color
-    config.csatNavigationBackgroundColor = UIColor.tangerine
+    config.csatNavigationBackgroundColor = UIColor.turquoise
     // Set Survey Navigation Bar Title Color
     config.csatNavigationTitleColor = UIColor.white
     // Set Survey Skip Button Color
@@ -627,9 +685,11 @@ class LivePersonSDK: NSObject {
     // Set Submit Survey Button - Corner Radius
     config.csatSubmitButtonCornerRadius = 30
     // Set Submit Survey Button - Background Color
-    config.csatSubmitButtonBackgroundColor = UIColor.tangerine
+    config.csatSubmitButtonBackgroundColor = UIColor.turquoise
     // Set Submit Survey Button - Text Color
     config.csatSubmitButtonTextColor = UIColor.white
+    // Set CSAT Yes/No Buttons Corner Radious
+    // TODO : config.csatYesNoButtonsCornerRadius = 25
   }
   
   /// Will get Agent Details when available

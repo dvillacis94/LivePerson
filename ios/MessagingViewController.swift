@@ -66,6 +66,8 @@ class MessagingViewController: UIViewController {
     LivePersonSDK.shared.initLogger()
     // Set Delegate
     LivePersonSDK.shared.delegate = self
+    // Set Window Mode Flags
+    LivePersonSDK.shared.isWindowMode = false
     // Customize Messaging Screen
     LivePersonSDK.shared.customizeMessagingScreen()
     // Change Status Bar Style
@@ -137,7 +139,7 @@ class MessagingViewController: UIViewController {
       // Create Menu Button
       let menuButton = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(menuButtonPressed))
       // Set Navigation Bar - Title View
-      navigation.navigationBar.topItem?.titleView = self.getTitle("Messaging")
+      navigation.navigationBar.topItem?.titleView = self.getAttributedTitle("Messaging")
       // Set Navigation Bar - Right Item
       navigation.navigationBar.topItem?.rightBarButtonItem = menuButton
       // Set Navigation Bar - Left Item
@@ -187,22 +189,32 @@ class MessagingViewController: UIViewController {
     self.present(menu, animated: true, completion: nil)
   }
   
-  /// Will return Attributed String for title
+  /// Will create a new UILabel with Attributed String
   ///
-  /// - Parameter title: Title
-  private func getTitle(_ title : String) -> UILabel {
+  /// - Parameter title: New Title
+  /// - Returns: UILabel with new Attributed String
+  public func getAttributedTitle(_ title : String ) -> UILabel{
     // Create Label to Hold new Title
     let view = UILabel()
-    // Create Attributes for Title - Helvetica Neue
+    // Set Title
+    var newTitle = title
+    // Create Attributes for Title
     let attributes : [ NSAttributedStringKey : Any ] = [
       .foregroundColor : UIColor.white,
-      .font : UIFont(name: "Helvetica Neue", size: 16.0)!
+      .font : UIFont(name: "ArialMT", size: 16.0)!
     ]
+    // Limit to 15 Chars
+    if ( title.length > 23 ){
+      // Trim Title
+      newTitle = title.subString(0, length: 20)
+      // Append Ellipsis
+      newTitle.append("...")
+    }
     // Create new Title String
-    let title = NSAttributedString(string: title, attributes: attributes)
+    let text = NSAttributedString(string: newTitle, attributes: attributes)
     // Set Title
-    view.attributedText = title
-    // Return new View
+    view.attributedText = text
+    // Return new UILabel
     return view
   }
 }
@@ -240,7 +252,7 @@ extension MessagingViewController : LPMessagingSDKdelegate {
     })
   }
   
-  //MARK:- Required - LPMessagingSDKDelegate
+  //MARK: - Required - LPMessagingSDKDelegate
   
   /// Will be trigger when authentication process fails
   ///
@@ -262,8 +274,8 @@ extension MessagingViewController : LPMessagingSDKdelegate {
   ///
   /// - Parameter brandID: Account ID / Brand Id
   func LPMessagingSDKTokenExpired(_ brandID: String) {
-    // Log
-    print("Brand ID :: \(brandID)")
+    // Try to Reconnect
+    LivePersonSDK.shared.reconnect()
   }
   
   /// Will let you know if there is an error with the sdk and what this error is
@@ -275,7 +287,6 @@ extension MessagingViewController : LPMessagingSDKdelegate {
   }
   
   //MARK:- Optionals - LPMessagingSDKDelegate
-  
   
   /// Will be triggerd once all connection retries were failed.
   ///
@@ -313,8 +324,8 @@ extension MessagingViewController : LPMessagingSDKdelegate {
     if(agent != nil) {
       // Try to get Navigation Controller Reference
       if let navigation = self.navigationController {
-        // Set Agent Name
-        navigation.navigationBar.topItem?.titleView = self.getTitle((agent?.firstName)!)
+        // INFO: Set Agent Name - This comes from Class Extension
+        navigation.setNavigationViewTitle(agent: agent!)
       }
     }
   }
@@ -325,8 +336,17 @@ extension MessagingViewController : LPMessagingSDKdelegate {
   func LPMessagingSDKAgentIsTypingStateChanged(_ isTyping: Bool) {
     // Log
     print("Agent is Typing :: \(isTyping)")
+    // Check if Title View with Agent Details has been set
+    if self.navigationController?.navigationBar.topItem?.titleView == nil{
+      // Get Agent Details
+      let agent = LivePersonSDK.shared.getAgentDetails()
+      // Check if there is an Agent Assigned to the Conversation
+      if agent != nil {
+        // Set Agent Title View
+        self.navigationController?.setNavigationViewTitle(agent: agent!)
+      }
+    }
   }
-  
   
   /// Will be trigger whenever an event log is received.
   ///
@@ -365,7 +385,7 @@ extension MessagingViewController : LPMessagingSDKdelegate {
   ///   - closeReason: Who Closed the Conversation ( 0 : agent, 1 : consumer, 2 : system )
   func LPMessagingSDKConversationEnded(_ conversationID: String?, closeReason: LPConversationCloseReason) {
     // Remove Agent Name from ConversationViewController Navigation Title
-    self.navigationItem.titleView = self.getTitle("LivePerson")
+    self.navigationItem.titleView = self.getAttributedTitle("LivePerson")
     // Print Log
     print("Closed Reason :: \(closeReason.rawValue)")
   }
@@ -411,15 +431,6 @@ extension MessagingViewController : LPMessagingSDKdelegate {
   
   // MARK: - CSAT Delegates
   
-  /// Will set Custom Title For CSAT View
-  ///
-  /// - Parameter brandID: Brand ID
-  /// - Returns: New Title View
-  func LPMessagingSDKCSATCustomTitleView(_ brandID: String) -> UIView {
-    // Return new View
-    return self.getTitle("LivePerson")
-  }
-  
   /// Will be trigger when the Conversation CSAT did load
   ///
   /// - Parameter conversationID: Conversation ID
@@ -436,6 +447,8 @@ extension MessagingViewController : LPMessagingSDKdelegate {
   func LPMessagingSDKConversationCSATSkipped(_ conversationID: String?) {
     // Log
     print("Conversation ID :: \(conversationID!)")
+    // Change CSAT Flag
+    self.wasCSATShowing = false
   }
   
   /// Will be trigger when the customer satisfaction survey is dismissed after the user has submitted the survey/
@@ -444,6 +457,8 @@ extension MessagingViewController : LPMessagingSDKdelegate {
   func LPMessagingSDKConversationCSATDismissedOnSubmittion(_ conversationID: String?) {
     // Log
     print("Conversation ID :: \(conversationID!)")
+    // Change CSAT Flag
+    self.wasCSATShowing = false
   }
   
   /// Will be trigger after the customer satisfaction page is submitted with a score.

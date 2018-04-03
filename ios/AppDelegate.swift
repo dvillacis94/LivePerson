@@ -15,6 +15,8 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificationDelegate{
   
+  // MARK: - Properties
+  
   // Reference to MainScreen
   var window: UIWindow?
   
@@ -74,6 +76,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
     }
   }
   
+  func applicationDidBecomeActive(_ application: UIApplication) {
+    
+  }
+  
+  // MARK: - Notification Delegates
+  
+  /// App Did Register for Push Notifications
+  ///
+  /// - Parameters:
+  ///   - application: Application Instance
+  ///   - deviceToken: Device Token for Push Notifications
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     // Get Token & Parse it
     let token = deviceToken.map{ String( format : "%02.2hhx",$0)}.joined()
@@ -83,13 +96,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
     LPMessagingSDK.instance.registerPushNotifications(token: deviceToken, notificationDelegate: self)
   }
   
+  /// App did Receive Remote Notification
+  ///
+  /// - Parameters:
+  ///   - application: Application Instance
+  ///   - userInfo: Notification Information
+  ///   - completionHandler: Completition Handler
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     // Handle Push Notification
     LPMessagingSDK.instance.handlePush(userInfo)
-  }
-  
-  func applicationDidBecomeActive(_ application: UIApplication) {
-    
   }
   
   // MARK: - LPMessagingSDKNotificationDelegate Delegate
@@ -109,7 +124,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LPMessagingSDKNotificatio
     // Return false if you don't want to show In-App Push Notification
     return true
   }
-  
   
   /// Override SDK - In-App Push Notification
   /// Behavior for tapping In-App Notification should be handle, when using a custom view no behavior is added, LPMessagingSDKNotification(notificationTapped) can't be use

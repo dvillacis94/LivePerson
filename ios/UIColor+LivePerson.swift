@@ -54,4 +54,9 @@ public extension UIColor {
   @objc static var lightTangerine : UIColor {
     return UIColor(red:1, green:0.73, blue:0.50, alpha:1.0)
   }
+  
+  /// LivePerson - Turquoise
+  @objc static var turquoise : UIColor {
+    return UIColor(red:0.29, green:0.51, blue:0.52, alpha:1.0)
+  }
 }

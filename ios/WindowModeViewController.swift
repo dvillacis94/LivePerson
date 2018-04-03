@@ -51,6 +51,8 @@ class WindowModeViewController: UIViewController {
     LivePersonSDK.shared.initLogger()
     // Set Delegate
     LivePersonSDK.shared.delegate = self
+    // Set Window Mode Flags
+    LivePersonSDK.shared.isWindowMode = true
     // Customize Messaging Screen
     LivePersonSDK.shared.customizeMessagingScreen()
   }

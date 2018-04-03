@@ -46,6 +46,8 @@
 		661F6E981FFD5A0200D24F2E /* WindowModeViewModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F6E971FFD5A0200D24F2E /* WindowModeViewModule.m */; };
 		663393761FE9CB510082E1AE /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663393751FE9CB510082E1AE /* EventEmitter.swift */; };
 		663393831FEB29510082E1AE /* libMSREventBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663393841FEB29510082E1AE /* libMSREventBridge.a */; };
+		6649B10F2073DFB50014FF43 /* UIImage+LivePerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6649B0EA2073DFB50014FF43 /* UIImage+LivePerson.swift */; };
+		6649B1112073DFC00014FF43 /* UINavigationController+LivePerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6649B1102073DFBF0014FF43 /* UINavigationController+LivePerson.swift */; };
 		66FFF1881FFC0BAD00B4B02F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FFF1871FFC0BAD00B4B02F /* Toast.swift */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -374,6 +376,8 @@
 		663393751FE9CB510082E1AE /* EventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 		663393841FEB29510082E1AE /* libMSREventBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMSREventBridge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		663393A81FEB298C0082E1AE /* MSREventBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MSREventBridge.xcodeproj; path = "../node_modules/react-native-event-bridge/ios/MSREventBridge.xcodeproj"; sourceTree = "<group>"; };
+		6649B0EA2073DFB50014FF43 /* UIImage+LivePerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+LivePerson.swift"; sourceTree = "<group>"; };
+		6649B1102073DFBF0014FF43 /* UINavigationController+LivePerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+LivePerson.swift"; sourceTree = "<group>"; };
 		66FFF1861FFC0A8800B4B02F /* LivePerson.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LivePerson.entitlements; path = LivePerson/LivePerson.entitlements; sourceTree = "<group>"; };
 		66FFF1871FFC0BAD00B4B02F /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -645,6 +649,8 @@
 			children = (
 				660CD1251FE85BD700D1589A /* UIColor+LivePerson.swift */,
 				661A1E8120335E83004483BE /* UIView+LivePerson.swift */,
+				6649B0EA2073DFB50014FF43 /* UIImage+LivePerson.swift */,
+				6649B1102073DFBF0014FF43 /* UINavigationController+LivePerson.swift */,
 				660CD0C21FE4815300D1589A /* LivePerson-Bridging-Header.h */,
 				660CD1231FE85A8D00D1589A /* LivePersonSDK.swift */,
 				66FFF1871FFC0BAD00B4B02F /* Toast.swift */,
@@ -1216,12 +1222,14 @@
 				"${PODS_ROOT}/LPMessagingSDK/LPMessagingSDK/LPAMS.framework",
 				"${PODS_ROOT}/LPMessagingSDK/LPMessagingSDK/LPInfra.framework",
 				"${PODS_ROOT}/LPMessagingSDK/LPMessagingSDK/LPMessagingSDK.framework",
+				"${PODS_ROOT}/LPMessagingSDK/LPMessagingSDK/LPMonitoring.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LPAMS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LPInfra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LPMessagingSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LPMonitoring.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1253,7 +1261,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LPMessagingSDKModels.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1343,6 +1351,7 @@
 			files = (
 				660CD1121FE852D200D1589A /* MessagingVIewManager.swift in Sources */,
 				660CD0C41FE4815300D1589A /* AppDelegate.swift in Sources */,
+				6649B1112073DFC00014FF43 /* UINavigationController+LivePerson.swift in Sources */,
 				661F6E461FFC345000D24F2E /* ReactNativeEventEmitter.swift in Sources */,
 				660CD1261FE85BD700D1589A /* UIColor+LivePerson.swift in Sources */,
 				660CD10E1FE851AE00D1589A /* MessagingView.swift in Sources */,
@@ -1355,6 +1364,7 @@
 				661F6E441FFC343200D24F2E /* ReactNativeEventEmitter.m in Sources */,
 				660CD1141FE8551300D1589A /* MessagingViewModule.m in Sources */,
 				661A1E8220335E83004483BE /* UIView+LivePerson.swift in Sources */,
+				6649B10F2073DFB50014FF43 /* UIImage+LivePerson.swift in Sources */,
 				660CD1241FE85A8D00D1589A /* LivePersonSDK.swift in Sources */,
 				661F6E981FFD5A0200D24F2E /* WindowModeViewModule.m in Sources */,
 			);

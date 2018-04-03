@@ -61,7 +61,7 @@ class MessagingView: UIView {
     // Present Navigatio Controller
     parent.present(navigation, animated: true, completion: nil)
     // Set Navigation Bar - Tint Color
-    navigation.navigationBar.barTintColor = UIColor.tangerine
+    navigation.navigationBar.barTintColor = UIColor.turquoise
     // Set Navigation Bar - Items Tint Color
     navigation.navigationBar.tintColor = UIColor.white
     // Set Frame

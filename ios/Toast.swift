@@ -93,7 +93,7 @@ class Toast: UIView {
       // Set Height Constrains for iPhone X
       height = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .lessThanOrEqual, toItem: reference, attribute: .height, multiplier: 0.8, constant: 0.0)
       // This constraint centers the Label Vertically in the View
-      centerY = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: reference, attribute: .centerY, multiplier: 1.2, constant: 0.0)
+      centerY = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: reference, attribute: .centerY, multiplier: 1.4, constant: 0.0)
     } else {
       // Set Height Constrains for Regular iPhone
       height = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .lessThanOrEqual, toItem: reference, attribute: .height, multiplier: 1.0, constant: 0.0)
